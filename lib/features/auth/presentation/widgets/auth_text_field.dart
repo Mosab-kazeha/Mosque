@@ -8,17 +8,18 @@ class AuthTextField extends StatelessWidget {
   final String label;
   final TextFieldType type;
   final String hintText;
-  final void Function(String)? onChanged;
+  final TextEditingController controller;
+  // final void Function(String)? onChanged;
   const AuthTextField({
     super.key,
     required this.label,
     required this.type,
-    required this.hintText, this.onChanged,
+    required this.hintText,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -38,7 +39,7 @@ class AuthTextField extends StatelessWidget {
           filled: true,
           fillColor: AppPalette.white,
           activeColor: AppPalette.backgroundColor,
-          onChanged: onChanged,
+          controller: controller,
         ),
       ],
     );

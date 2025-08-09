@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../style/app_palette.dart';
 import 'responsive_text.dart';
 
 enum TextFieldType { email, password, phone, other }
 
 class CustomTextField extends StatefulWidget {
+  final TextEditingController? controller;
   final TextFieldType type;
   final bool isRequired;
   final TextInputAction? textInputAction;
@@ -26,6 +26,7 @@ class CustomTextField extends StatefulWidget {
 
   const CustomTextField({
     super.key,
+    this.controller,
     this.type = TextFieldType.other,
     this.isRequired = true,
     this.textInputAction,
@@ -67,12 +68,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
     focusNode
       ..removeListener(_focusNodeListener)
       ..dispose();
+
+    // widget.controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       focusNode: focusNode,
       textAlign: widget.textAlign ?? TextAlign.start,
       onChanged: widget.onChanged,

@@ -10,6 +10,8 @@ class LoginButtonnn extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
+        final bloc = BlocProvider.of<AuthBloc>(context);
+
         if (state is AuthLoading) {
           return Container(
             width: double.infinity,
@@ -23,7 +25,12 @@ class LoginButtonnn extends StatelessWidget {
         }
         return ElevatedButton(
           onPressed: () {
-            BlocProvider.of<AuthBloc>(context).add(LoginRequest());
+            bloc.add(
+              LoginRequest(
+                bloc.phoneController.text,
+                bloc.passwordController.text,
+              ),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppPalette.white,

@@ -44,17 +44,19 @@ class LoginScreen extends StatelessWidget {
                     label: 'رقم الموبايل',
                     type: TextFieldType.phone,
                     hintText: 'رقم الموبايل',
-                    onChanged: (p0) => bloc.phone = p0,
+                    controller: bloc.phoneController,
+                    // onChanged: (p0) => bloc.phone = p0,
                   ),
                   const VerticalSpace(16),
                   AuthTextField(
                     label: 'كلمة المرور',
                     type: TextFieldType.password,
                     hintText: '**********',
-                    onChanged: (p0) => bloc.password = p0,
+                    controller: bloc.passwordController,
+                    // onChanged: (p0) => bloc.password = p0,
                   ),
                   const VerticalSpace(40),
-                  LoginButtonnn(),
+                  const LoginButtonnn(),
                   // LoginButton(
                   //   onPressed: () {
                   //     if (bloc.formKey.currentState!.validate()) {}

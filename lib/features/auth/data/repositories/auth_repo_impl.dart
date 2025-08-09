@@ -1,9 +1,9 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:saas_mosque/core/error/failure.dart';
 import 'package:saas_mosque/core/network/dio_helper.dart';
+import 'package:saas_mosque/core/network/end_point.dart';
 import 'package:saas_mosque/features/auth/data/repositories/auth_repo.dart';
 import 'package:saas_mosque/injection_container.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,7 +20,7 @@ final class AuthRepoImpl extends AuthRepo {
   }) async {
     try {
       final response = await _dioHelper.postData(
-        url: 'auth/login/teacher',
+        url: EndPoint.login,
         data: {'mobile_phone_number': phone, 'password': password},
       );
       log("Login Success: ${response.data}");

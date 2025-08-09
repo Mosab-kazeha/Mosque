@@ -9,14 +9,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo _authRepo;
 
   final formKey = GlobalKey<FormState>();
-  String phone = '', password = '';
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
 
   AuthBloc(AuthRepo authRepo) : _authRepo = authRepo, super(AuthInitial()) {
     on<LoginRequest>((event, emit) async {
       emit(AuthLoading());
       (await _authRepo.login(
-        phone: phone,
-        password: password,
+        phone: event.phone,
+        password: event.password,
       )).fold(
         (l) => emit(AuthFailure(l.errorMessege)),
         (r) => emit(AuthSuccess()),
