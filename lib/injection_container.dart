@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:saas_mosque/features/auth/data/repositories/auth_repo.dart';
 import 'package:saas_mosque/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo.dart';
+import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo_imp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/network/dio_helper.dart';
 
@@ -27,6 +29,10 @@ void init() async {
 
   serviceLocater.registerLazySingleton<AuthRepo>(() {
     return AuthRepoImpl(serviceLocater());
+  });
+
+  serviceLocater.registerLazySingleton<HomeRepo>(() {
+    return HomeRepoImpl(serviceLocater());
   });
 
   serviceLocater.registerLazySingleton(() => AuthBloc(serviceLocater()));

@@ -16,6 +16,18 @@ abstract final class AppRouter {
             ),
       ),
       GoRoute(
+        path: AppRoutes.kHomeScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => serviceLocater<HomeBloc>(),
+              //! call the event setSelectedGroup
+              // ..add(
+              //   SetSelectedGroup(state.group, satae.group.students),
+              // ),
+              child: const HomeScreen(),
+            ),
+      ),
+      GoRoute(
         path: AppRoutes.kRoomScreen,
         builder: (context, state) => const RoomScreen(),
       ),
