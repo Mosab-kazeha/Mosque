@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/style/font_style.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 
 class LogoHeader extends StatelessWidget {

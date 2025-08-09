@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:saas_mosque/core/router/routes_config.dart';
 import 'package:saas_mosque/core/widget/custom_snack_bar.dart';
 import 'package:saas_mosque/core/widget/custom_text_field.dart';
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
@@ -25,6 +27,7 @@ class LoginScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is AuthSuccess) {
                 CustomSnackBar.show(context, "تم تسجيل الدخول بنجاح");
+                context.pushReplacement(AppRoutes.kRoomScreen);
               } else if (state is AuthFailure) {
                 CustomSnackBar.show(
                   context,

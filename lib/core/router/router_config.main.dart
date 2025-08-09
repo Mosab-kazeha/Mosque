@@ -15,6 +15,10 @@ abstract final class AppRouter {
               child: const LoginScreen(),
             ),
       ),
+      GoRoute(
+        path: AppRoutes.kRoomScreen,
+        builder: (context, state) => const RoomScreen(),
+      ),
     ],
   );
 }

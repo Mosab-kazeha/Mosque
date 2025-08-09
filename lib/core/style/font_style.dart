@@ -1,26 +1,14 @@
-// import 'package:flutter/material.dart';
+enum FontTextSize { headingFontSize, bodyFontSize, smallFontSize }
 
-// import 'app_palette.dart';
+abstract final class AppFontStyle {
+  static const String fontFamily = 'Almarai';
 
-// abstract final class FontStyle {
-//   // أحجام
-//   static const double headingFontSize = 24;
-//   static const double bodyFontSize = 16;
-//   static const double smallFontSize = 12;
-
-//   static const String fontFamily = 'Almarai';
-
-//   // أنماط النصوص
-
-//   static const TextStyle bodyText = TextStyle(
-//     fontFamily: fontFamily,
-//     fontSize: 20,
-//     fontWeight: FontWeight.bold,
-//   );
-
-//   static const TextStyle smallText = TextStyle(
-//     fontFamily: fontFamily,
-//     fontSize: smallFontSize,
-//     color: AppPalette.textColor,
-//   );
-// }
+  static double selectTextSize(FontTextSize size) {
+    if (size == FontTextSize.headingFontSize) {
+      return 24;
+    } else if (size == FontTextSize.bodyFontSize) {
+      return 16;
+    }
+    return 12;
+  }
+}

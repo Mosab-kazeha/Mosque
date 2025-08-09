@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:saas_mosque/core/style/font_style.dart';
 import 'package:saas_mosque/core/utils/size_config.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 
@@ -8,17 +9,18 @@ enum SnackBarType { error, success, other }
 class CustomSnackBar extends StatelessWidget {
   final String message;
   final TextStyle? messageStyle;
-  const CustomSnackBar({
-    super.key,
-    required this.message,
-    this.messageStyle,
-  });
+  const CustomSnackBar({super.key, required this.message, this.messageStyle});
 
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-      child: ResponsiveText(message,fontSize: FontTextSize.bodyFontSize,maxLines: 3,overflow: TextOverflow.ellipsis,),
+      child: ResponsiveText(
+        message,
+        fontSize: FontTextSize.bodyFontSize,
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 
@@ -34,10 +36,7 @@ class CustomSnackBar extends StatelessWidget {
         SnackBar(
           backgroundColor: _backgroundColor(context, type).withAlpha(5),
           duration: _duration(type),
-          content: CustomSnackBar(
-            message: message,
-            messageStyle: messageStyle,
-          ),
+          content: CustomSnackBar(message: message, messageStyle: messageStyle),
           behavior: SnackBarBehavior.floating,
           dismissDirection: DismissDirection.horizontal,
           shape: OutlineInputBorder(

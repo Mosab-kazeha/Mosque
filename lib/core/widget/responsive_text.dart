@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:saas_mosque/core/style/font_style.dart';
 
 import '../utils/size_config.dart';
-
-enum FontTextSize { headingFontSize, bodyFontSize, smallFontSize }
 
 class ResponsiveText extends StatelessWidget {
   final String text;
@@ -13,7 +12,7 @@ class ResponsiveText extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? overflow;
   final Color? color;
-  final String fontFamily = 'Almarai';
+  // final String fontFamily = 'Almarai';
   const ResponsiveText(
     this.text, {
     super.key,
@@ -22,7 +21,8 @@ class ResponsiveText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.fontWeight,
-    this.color, this.textDirection,
+    this.color,
+    this.textDirection,
   });
 
   @override
@@ -41,8 +41,8 @@ class ResponsiveText extends StatelessWidget {
       //           : null,
       // ),
       style: TextStyle(
-        fontFamily: fontFamily,
-        fontSize: getResponsiveFontSize(_selactTextSize(fontSize!)),
+        fontFamily: AppFontStyle.fontFamily,
+        fontSize: getResponsiveFontSize(AppFontStyle.selectTextSize(fontSize!)),
         fontWeight: fontWeight,
         color: color,
       ),
@@ -59,14 +59,5 @@ class ResponsiveText extends StatelessWidget {
 
   static double _getScaleFactor() {
     return SizeConfig.width / 400;
-  }
-
-  double _selactTextSize(FontTextSize size) {
-    if (size == FontTextSize.headingFontSize) {
-      return 24;
-    } else if (size == FontTextSize.bodyFontSize) {
-      return 16;
-    }
-    return 12;
   }
 }
