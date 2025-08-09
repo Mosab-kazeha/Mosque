@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:saas_mosque/features/room/model/student_model.dart';
+import 'package:saas_mosque/features/room/data/model/student_model.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/data/model/group_model.dart';
 
 import '../../data/model/home_data_model.dart';
