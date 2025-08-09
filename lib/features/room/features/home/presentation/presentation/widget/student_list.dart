@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
 
 import '../../../../../../../core/utils/educational_text.dart';
-import '../../../../data/model/student_model.dart';
+import '../../../../../model/student_model.dart';
 
 class StudentsList extends StatelessWidget {
   final List<StudentModel> students;
