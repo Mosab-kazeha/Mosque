@@ -19,6 +19,31 @@ final class HomeRepoImpl extends HomeRepo {
   @override
   Future<Either<Failure, HomeDataModel>> fetchHomeData() async {
     try {
+      //! change the method with fetchMyGroupsV2
+
+      /*
+      Future<List<MyGroup>> fetchMyGroupsV2(int campaignId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    if (token == null) throw Exception('No access token');
+
+    final response = await api.dio.get(
+      '${AppConstants.baseUrl}/groups/my-groups',
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          'campaign-id': campaignId.toString(),
+        },
+      ),
+    );
+    final data = response.data;
+    if (data is List) {
+      return data.map((e) => MyGroup.fromJson(e)).toList();
+    } else {
+      throw Exception('Unexpected response format');
+    }
+  }
+       */
       final teacherId = serviceLocater.get<SharedPreferences>().getInt(
         'teacher_id',
       );

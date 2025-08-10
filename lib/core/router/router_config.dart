@@ -8,6 +8,8 @@ import 'package:saas_mosque/features/splash/presentation/screen/splash_screen.da
 import 'package:saas_mosque/injection_container.dart';
 
 import '../../features/auth/presentation/screens/login_screen.dart';
+import '../../features/campaigns/presentation/bloc/campaigns_bloc.dart';
+import '../../features/campaigns/presentation/screens/campaigns_screen.dart';
 import '../../features/room/features/home/presentation/presentation/bloc/home_bloc_bloc.dart';
 
 part 'router_config.main.dart';

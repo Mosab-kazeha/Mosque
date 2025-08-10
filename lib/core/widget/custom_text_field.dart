@@ -69,7 +69,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ..removeListener(_focusNodeListener)
       ..dispose();
 
-    // widget.controller?.dispose();
+    widget.controller?.dispose();
     super.dispose();
   }
 

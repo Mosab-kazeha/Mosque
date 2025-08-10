@@ -5,8 +5,12 @@ import 'package:saas_mosque/features/auth/data/repositories/auth_repo_impl.dart'
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo_imp.dart';
+import 'package:saas_mosque/features/room/features/home/presentation/presentation/bloc/home_bloc_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/network/dio_helper.dart';
+import 'features/campaigns/data/repositories/campaigns_repo.dart';
+import 'features/campaigns/data/repositories/campaigns_repo_impl.dart';
+import 'features/campaigns/presentation/bloc/campaigns_bloc.dart';
 
 final serviceLocater = GetIt.instance;
 
@@ -31,9 +35,17 @@ void init() async {
     return AuthRepoImpl(serviceLocater());
   });
 
+  serviceLocater.registerLazySingleton(() => AuthBloc(serviceLocater()));
+
+  serviceLocater.registerLazySingleton<CampaignsRepo>(() {
+    return CampaignsRepoImpl(serviceLocater());
+  });
+
+  serviceLocater.registerLazySingleton(() => CampaignsBloc(serviceLocater()));
+
   serviceLocater.registerLazySingleton<HomeRepo>(() {
     return HomeRepoImpl(serviceLocater());
   });
 
-  serviceLocater.registerLazySingleton(() => AuthBloc(serviceLocater()));
+  serviceLocater.registerLazySingleton(() => HomeBloc(serviceLocater()));
 }

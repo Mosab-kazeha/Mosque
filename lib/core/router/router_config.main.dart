@@ -27,6 +27,16 @@ abstract final class AppRouter {
               child: const HomeScreen(),
             ),
       ),
+       GoRoute(
+        path: AppRoutes.kCampaignsScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) =>
+                      serviceLocater<CampaignsBloc>()..add(GetCampaigns()),
+              child: const CampaignsScreen(),
+            ),
+      ),
       GoRoute(
         path: AppRoutes.kRoomScreen,
         builder: (context, state) => const RoomScreen(),

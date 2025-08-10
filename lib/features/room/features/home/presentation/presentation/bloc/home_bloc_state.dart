@@ -18,7 +18,7 @@ class HomeGroupSelected extends HomeState {
   HomeGroupSelected(this.group, this.students);
 }
 
-class HomeError extends HomeState {
+class HomeFailure extends HomeState {
   final String message;
-  HomeError(this.message);
+  HomeFailure(this.message);
 }

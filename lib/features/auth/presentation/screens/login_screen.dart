@@ -6,7 +6,7 @@ import 'package:saas_mosque/core/widget/custom_snack_bar.dart';
 import 'package:saas_mosque/core/widget/custom_text_field.dart';
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:saas_mosque/features/auth/presentation/widgets/auth_text_field.dart';
-import 'package:saas_mosque/features/auth/presentation/widgets/login_buttonnn.dart';
+import 'package:saas_mosque/features/auth/presentation/widgets/login_button.dart';
 import 'package:saas_mosque/features/auth/presentation/widgets/logo_hedar.dart';
 import '../../../../core/style/app_palette.dart';
 import '../../../../core/widget/spaces.dart';
@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is AuthSuccess) {
                 CustomSnackBar.show(context, "تم تسجيل الدخول بنجاح");
-                context.pushReplacement(AppRoutes.kRoomScreen);
+                context.pushReplacement(AppRoutes.kCampaignsScreen);
               } else if (state is AuthFailure) {
                 CustomSnackBar.show(
                   context,
@@ -59,13 +59,7 @@ class LoginScreen extends StatelessWidget {
                     // onChanged: (p0) => bloc.password = p0,
                   ),
                   const VerticalSpace(40),
-                  const LoginButtonnn(),
-                  // LoginButton(
-                  //   onPressed: () {
-                  //     if (bloc.formKey.currentState!.validate()) {}
-                  //   },
-                  //   isLoading: false,
-                  // ),
+                  const LoginButton(),
                 ],
               ),
             ),

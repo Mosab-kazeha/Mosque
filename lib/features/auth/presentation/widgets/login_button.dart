@@ -1,47 +1,65 @@
-// import 'package:flutter/material.dart';
-// import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/utils/size_config.dart';
+import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
 
-// class LoginButton extends StatelessWidget {
-//   final VoidCallback onPressed;
-//   final bool isLoading;
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key});
 
-//   const LoginButton({
-//     super.key,
-//     required this.onPressed,
-//     required this.isLoading,
-//   });
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        final bloc = BlocProvider.of<AuthBloc>(context);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: double.infinity,
-//       height: 50,
-//       child: ElevatedButton(
-//         onPressed: isLoading ? null : onPressed,
-//         style: ElevatedButton.styleFrom(
-//           backgroundColor: AppPalette.white,
-//           foregroundColor: AppPalette.backgroundColor,
-//           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-//           elevation: 0,
-//         ),
-//         child:
-//             isLoading
-//                 ? const CircularProgressIndicator(
-//                   valueColor: AlwaysStoppedAnimation<Color>(
-//                     AppPalette.backgroundColor,
-//                   ),
-//                 )
-//                 : const Text(
-//                   "تسجيل الدخول",
-//                   style: TextStyle(
-//                     color:  AppPalette.backgroundColor,
-//                     fontSize: 18,
-//                     fontWeight: FontWeight.bold,
-//                     fontFamily: 'Roboto',
-//                   ),
-//                   textDirection: TextDirection.rtl,
-//                 ),
-//       ),
-//     );
-//   }
-// }
+        if (state is AuthLoading) {
+          return Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(6),
+            width: double.infinity,
+            height: SizeConfig.height * 0.065,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: AppPalette.grey.withAlpha(120),
+            ),
+            child: const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                AppPalette.backgroundColor,
+              ),
+            ),
+          );
+        }
+        return ElevatedButton(
+          onPressed: () {
+            bloc.add(
+              LoginRequest(
+                bloc.phoneController.text,
+                bloc.passwordController.text,
+              ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size(SizeConfig.width, SizeConfig.height * 0.065),
+            backgroundColor: AppPalette.white,
+            foregroundColor: AppPalette.backgroundColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            elevation: 0,
+          ),
+          child: const Text(
+            "تسجيل الدخول",
+            style: TextStyle(
+              color: AppPalette.backgroundColor,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Roboto',
+            ),
+            textDirection: TextDirection.rtl,
+          ),
+        );
+      },
+    );
+  }
+}
