@@ -1,4 +1,4 @@
-import 'package:saas_mosque/features/room/features/home/presentation/data/model/group_model.dart';
+import 'package:saas_mosque/core/data/models/group_model.dart';
 
 class HomeDataModel {
   final int id;

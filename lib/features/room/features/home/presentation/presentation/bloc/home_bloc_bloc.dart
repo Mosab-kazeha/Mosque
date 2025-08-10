@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
-import 'package:saas_mosque/features/room/features/home/presentation/data/model/group_model.dart';
+import 'package:saas_mosque/core/data/models/group_model.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo.dart';
 
 import '../../data/model/home_data_model.dart';

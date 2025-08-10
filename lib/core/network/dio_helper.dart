@@ -9,11 +9,17 @@ class DioHelper {
     required String url,
     Map<String, dynamic>? query,
     String? token,
+    Map<String, dynamic>? headers,
   }) async {
     return await dio.get(
       url,
       queryParameters: query,
-      options: Options(headers: {"authorization": "Bearer $token"}),
+      options: Options(
+        headers: {
+          ...{"authorization": "Bearer $token"},
+          ...headers ?? {},
+        },
+      ),
     );
   }
 

@@ -1,4 +1,4 @@
-import '../../../../../data/model/student_model.dart';
+import '../../../features/room/data/model/student_model.dart';
 
 class GroupModel {
   final int id;

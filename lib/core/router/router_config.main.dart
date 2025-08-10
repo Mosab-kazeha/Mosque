@@ -27,7 +27,7 @@ abstract final class AppRouter {
               child: const HomeScreen(),
             ),
       ),
-       GoRoute(
+      GoRoute(
         path: AppRoutes.kCampaignsScreen,
         builder:
             (context, state) => BlocProvider(
@@ -35,6 +35,15 @@ abstract final class AppRouter {
                   (context) =>
                       serviceLocater<CampaignsBloc>()..add(GetCampaigns()),
               child: const CampaignsScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.kGroupsScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) => serviceLocater<GroupsBloc>()..add(GetGroups()),
+              child: const GroupsScreen(),
             ),
       ),
       GoRoute(

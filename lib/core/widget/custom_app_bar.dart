@@ -1,38 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:saas_mosque/core/style/font_style.dart';
-// import 'package:saas_mosque/core/widget/responsive_text.dart';
-
-// class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-//   const CustomAppBar({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       backgroundColor: const Color(0xFF2b836b),
-//       elevation: 0,
-//       // leading: IconButton(
-//       //   icon: const Icon(Icons.arrow_back, color: Colors.white),
-//       //   onPressed: () {},
-//       //   // onPressed: () => _logoutAndGoToLogin(context),
-//       // ),
-//       title: const Align(
-//         alignment: Alignment.center,
-//         child: ResponsiveText(
-//           'الدورات',
-//           textAlign: TextAlign.end,
-//           color: Colors.white,
-//           fontWeight: FontWeight.bold,
-//           fontSize: FontTextSize.headingFontSize,
-//         ),
-//       ),
-//       centerTitle: false,
-//     );
-//   }
-
-//   @override
-//   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-// }
-
 import 'package:flutter/material.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/style/font_style.dart';

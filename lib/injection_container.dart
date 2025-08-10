@@ -3,6 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:saas_mosque/features/auth/data/repositories/auth_repo.dart';
 import 'package:saas_mosque/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:saas_mosque/features/groups/data/repositories/groups_repo.dart';
+import 'package:saas_mosque/features/groups/data/repositories/groups_repo_impl.dart';
+import 'package:saas_mosque/features/groups/presentation/bloc/campaigns_bloc.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo_imp.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/presentation/bloc/home_bloc_bloc.dart';
@@ -42,6 +45,12 @@ void init() async {
   });
 
   serviceLocater.registerLazySingleton(() => CampaignsBloc(serviceLocater()));
+
+  serviceLocater.registerLazySingleton<GroupsRepo>(() {
+    return GroupsRepoImpl(serviceLocater());
+  });
+
+  serviceLocater.registerLazySingleton(() => GroupsBloc(serviceLocater()));
 
   serviceLocater.registerLazySingleton<HomeRepo>(() {
     return HomeRepoImpl(serviceLocater());

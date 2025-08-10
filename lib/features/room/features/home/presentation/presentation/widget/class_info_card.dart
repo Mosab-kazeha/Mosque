@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 
 import '../../../../../../../core/style/font_style.dart';
-import '../../data/model/group_model.dart';
+import '../../../../../../../core/data/models/group_model.dart';
 
 class ClassInfoCard extends StatelessWidget {
   final GroupModel group;
