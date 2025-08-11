@@ -1,4 +1,4 @@
-part of 'campaigns_bloc.dart';
+part of 'groups_bloc.dart';
 
 @immutable
 sealed class GroupsState {

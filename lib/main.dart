@@ -6,6 +6,7 @@ import 'package:saas_mosque/core/utils/size_config.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   di.init();
 
   runApp(const Mosque());

@@ -15,18 +15,20 @@ abstract final class AppRouter {
               child: const LoginScreen(),
             ),
       ),
-      GoRoute(
-        path: AppRoutes.kHomeScreen,
-        builder:
-            (context, state) => BlocProvider(
-              create: (context) => serviceLocater<HomeBloc>(),
-              //! call the event setSelectedGroup
-              // ..add(
-              //   SetSelectedGroup(state.group, satae.group.students),
-              // ),
-              child: const HomeScreen(),
-            ),
-      ),
+      // GoRoute(
+      //   path: AppRoutes.kHomeScreen,
+      //   builder:
+      //       (context, state) =>
+      //       //  BlocProvider(
+      //       //   create: (context) => serviceLocater<HomeBloc>(),
+      //       //  // //! call the event setSelectedGroup
+      //       //   // ..add(
+      //       //   //   SetSelectedGroup(state.group, satae.group.students),
+      //       //   // ),
+      //       //   child:
+      //       HomeScreen(group: state.extra as GroupModel),
+      //   // ),
+      // ),
       GoRoute(
         path: AppRoutes.kCampaignsScreen,
         builder:
@@ -48,7 +50,8 @@ abstract final class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.kRoomScreen,
-        builder: (context, state) => const RoomScreen(),
+        builder:
+            (context, state) => RoomScreen(group: state.extra as GroupModel),
       ),
     ],
   );

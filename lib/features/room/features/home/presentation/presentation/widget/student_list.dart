@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
 
+import '../../../../../../../core/style/font_style.dart';
 import '../../../../../../../core/utils/educational_text.dart';
 import '../../../../../data/model/student_model.dart';
 
@@ -56,20 +59,19 @@ class StudentsList extends StatelessWidget {
                     classNumber: student.educationalClass,
                   ),
                 ),
-                // Expanded(
-                //   child: Text(
-                //     "${student.firstName} ${student.lastName}",
-                //     textAlign: TextAlign.right,
-                //     style: FontStyles.bodyText.copyWith(
-                //       fontWeight: FontWeight.bold,
-                //     ),
-                //   ),
-                // ),
-                const HorizontalSpace(12),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    student.imageUrl ?? 'https://via.placeholder.com/150',
+                Expanded(
+                  child: ResponsiveText(
+                    "${student.firstName} ${student.lastName}",
+                    textAlign: TextAlign.right,
+                    fontSize: FontTextSize.titleFontSize,
                   ),
+                ),
+                const HorizontalSpace(12),
+                const CircleAvatar(
+                  // backgroundImage: NetworkImage(
+                  //   student.imageUrl ?? 'https://via.placeholder.com/150',
+                  // ),
+                  backgroundColor: AppPalette.cardBorderColor1,
                   radius: 24,
                 ),
               ],

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/data/models/group_model.dart';
 import 'package:saas_mosque/features/groups/data/repositories/groups_repo.dart';
 
-part 'campaigns_event.dart';
-part 'campaigns_state.dart';
+part 'groups_event.dart';
+part 'groups_state.dart';
 
 class GroupsBloc extends Bloc<GroupsEvent, GroupsState> {
   final GroupsRepo _groupsRepo;

@@ -34,7 +34,7 @@ class CustomSnackBar extends StatelessWidget {
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          backgroundColor: _backgroundColor(context, type).withAlpha(5),
+          backgroundColor: _backgroundColor(context, type).withAlpha(1),
           duration: _duration(type),
           content: CustomSnackBar(message: message, messageStyle: messageStyle),
           behavior: SnackBarBehavior.floating,
@@ -57,7 +57,8 @@ class CustomSnackBar extends StatelessWidget {
   }
 
   static Color _backgroundColor(BuildContext context, SnackBarType type) {
-    if (type == SnackBarType.error) return Theme.of(context).colorScheme.error;
+    // if (type == SnackBarType.error) return Theme.of(context).colorScheme.error;
+    if (type == SnackBarType.error) return Colors.red;
     if (type == SnackBarType.success) return Colors.green;
     return Colors.white;
   }

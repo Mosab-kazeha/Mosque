@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/data/models/group_model.dart';
 import 'package:saas_mosque/core/widget/custom_app_bar.dart';
-import 'package:saas_mosque/features/groups/presentation/bloc/campaigns_bloc.dart';
+import 'package:saas_mosque/features/groups/presentation/bloc/groups_bloc.dart';
 import 'package:saas_mosque/features/groups/presentation/widgets/groups_list.dart';
 
 class GroupsScreen extends StatelessWidget {

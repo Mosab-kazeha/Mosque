@@ -8,7 +8,7 @@ enum FontTextSize {
 abstract final class AppFontStyle {
   static const String fontFamily = 'Almarai';
 
-  static double selectTextSize(FontTextSize size) {
+  static double selectTextSize(FontTextSize? size) {
     if (size == FontTextSize.headingFontSize) {
       return 24;
     } else if (size == FontTextSize.titleFontSize) {

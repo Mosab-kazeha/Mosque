@@ -5,10 +5,12 @@ import 'package:saas_mosque/features/auth/data/repositories/auth_repo_impl.dart'
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:saas_mosque/features/groups/data/repositories/groups_repo.dart';
 import 'package:saas_mosque/features/groups/data/repositories/groups_repo_impl.dart';
-import 'package:saas_mosque/features/groups/presentation/bloc/campaigns_bloc.dart';
-import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo.dart';
-import 'package:saas_mosque/features/room/features/home/presentation/data/repositories/home_repo_imp.dart';
-import 'package:saas_mosque/features/room/features/home/presentation/presentation/bloc/home_bloc_bloc.dart';
+import 'package:saas_mosque/features/groups/presentation/bloc/groups_bloc.dart';
+import 'package:saas_mosque/features/room/features/attendance/data/repositories/attendance_repo.dart';
+import 'package:saas_mosque/features/room/features/attendance/data/repositories/attendance_repo_impl.dart';
+import 'package:saas_mosque/features/room/features/attendance/presentation/bloc/attendance_bloc.dart';
+import 'package:saas_mosque/features/room/features/listening/data/repositories/listening_repo.dart';
+import 'package:saas_mosque/features/room/features/listening/data/repositories/listening_repo_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/network/dio_helper.dart';
 import 'features/campaigns/data/repositories/campaigns_repo.dart';
@@ -18,6 +20,9 @@ import 'features/campaigns/presentation/bloc/campaigns_bloc.dart';
 final serviceLocater = GetIt.instance;
 
 void init() async {
+  
+  serviceLocater.registerSingleton(await SharedPreferences.getInstance());
+  
   serviceLocater.registerLazySingleton(
     () => Dio(
       BaseOptions(
@@ -31,8 +36,6 @@ void init() async {
   serviceLocater.registerLazySingleton<DioHelper>(
     () => DioHelper(serviceLocater()),
   );
-
-  serviceLocater.registerSingleton(await SharedPreferences.getInstance());
 
   serviceLocater.registerLazySingleton<AuthRepo>(() {
     return AuthRepoImpl(serviceLocater());
@@ -52,9 +55,19 @@ void init() async {
 
   serviceLocater.registerLazySingleton(() => GroupsBloc(serviceLocater()));
 
-  serviceLocater.registerLazySingleton<HomeRepo>(() {
-    return HomeRepoImpl(serviceLocater());
+  serviceLocater.registerLazySingleton<AttendanceRepo>(() {
+    return AttendanceRepoImpl(serviceLocater());
   });
 
-  serviceLocater.registerLazySingleton(() => HomeBloc(serviceLocater()));
+  serviceLocater.registerLazySingleton(() => AttendanceBloc(serviceLocater()));
+
+  serviceLocater.registerLazySingleton<ListeningRepo>(() {
+    return ListeningRepoImpl(serviceLocater());
+  });
+
+  // serviceLocater.registerLazySingleton<HomeRepo>(() {
+  //   return HomeRepoImpl(serviceLocater());
+  // });
+
+  // serviceLocater.registerLazySingleton(() => HomeBloc(serviceLocater()));
 }
