@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:saas_mosque/core/router/routes_config.dart';
+import 'package:saas_mosque/injection_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -27,14 +31,13 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.logout),
             title: const Text('تسجيل الخروج'),
             onTap: () async {
-              // final prefs = serviceLocater.get<SharedPreferences>();
-              // await prefs.remove('campaign_id');
-              // await prefs.remove('group_id');
-              // await prefs.remove('token');
-              // if (Navigator.canPop(context)) {
-              //   Navigator.pop(context); // Close drawer
-              // }
-              // Navigator.pushReplacementNamed(context, '/login');
+              final prefs = serviceLocater.get<SharedPreferences>();
+              await prefs.remove('campaign_id');
+              await prefs.remove('group_id');
+              await prefs.remove('teacher-id');
+              await prefs.remove('token');
+              // ignore: use_build_context_synchronously
+              context.pushReplacement(AppRoutes.kLoginScreen);
             },
           ),
         ],

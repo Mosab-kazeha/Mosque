@@ -19,7 +19,7 @@ class CampaignsList extends StatelessWidget {
           (context, index) => CustomCard(
             index: index,
             title: campaigns[index].name,
-            subTitle: campaigns[index].mosque.name,
+            subTitle: campaigns[index].mosque!.name,
             onTap: () async {
               await serviceLocater.get<SharedPreferences>().setInt(
                 'campaign-id',

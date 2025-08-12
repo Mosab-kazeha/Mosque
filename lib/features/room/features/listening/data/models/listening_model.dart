@@ -41,43 +41,42 @@ class ListeningModel {
 
   factory ListeningModel.fromJson(Map<String, dynamic> json) {
     return ListeningModel(
-        id: json['id'] ?? 0,
-        teacherId: json['teacher_id'] ?? json['teacherId'] ?? 0,
-        studentId: json['student_id'] ?? json['studentId'] ?? 0,
-        campaignId: json['campaign_id'] ?? json['campaignId'] ?? 0,
-        evaluationId: json['evaluation_id'] ?? json['evaluationId'] ?? 0,
-        start: json['start'] ?? 0,
-        end: json['end'] ?? 0,
-        rating: json['rating'] ?? 0,
-        duration: json['duration'] ?? 0,
-        createdAt:
-            DateTime.tryParse(json['created_at']?.toString() ?? '') ??
-            DateTime.now(),
-        student: StudentModel.fromJson(json['student'] ?? {}),
-        teacher: TeacherModel.fromJson(json['teacher'] ?? {}),
-        campaign: CampaignModel.fromJson(json['campaign'] ?? {}),
-        evaluation: EvaluationModel.fromJson(json['evaluation'] ?? {}),
-        mistakes:
-            (json['mistakes_in_session'] as List<dynamic>? ??
-                    json['mistakes'] as List<dynamic>? ??
-                    [])
-                .map((e) {
-                  // mistakes_in_session has nested 'mistake' object
-                  if (e is Map && e.containsKey('mistake')) {
-                    return MistakeModel(
-                      id: e['id'] ?? 0,
-                      page: e['page'] ?? 0,
-                      title: (e['mistake']?['title'] ?? '').toString(),
-                    );
-                  } else {
-                    return MistakeModel(
-                      id: e['id'] ?? 0,
-                      page: e['page'] ?? 0,
-                      title: (e['title'] ?? '').toString(),
-                    );
-                  }
-                })
-                .toList(),
-      );
+      id: json['id'] ?? 0,
+      teacherId: json['teacher_id'] ?? json['teacherId'] ?? 0,
+      studentId: json['student_id'] ?? json['studentId'] ?? 0,
+      campaignId: json['campaign_id'] ?? json['campaignId'] ?? 0,
+      evaluationId: json['evaluation_id'] ?? json['evaluationId'] ?? 0,
+      start: json['start'] ?? 0,
+      end: json['end'] ?? 0,
+      rating: json['rating'] ?? 0,
+      duration: json['duration'] ?? 0,
+      createdAt:
+          DateTime.tryParse(json['created_at']?.toString() ?? '') ??
+          DateTime.now(),
+      student: StudentModel.fromJson(json['student'] ?? {}),
+      teacher: TeacherModel.fromJson(json['teacher'] ?? {}),
+      campaign: CampaignModel.fromJson(json['campaign'] ?? {}),
+      evaluation: EvaluationModel.fromJson(json['evaluation'] ?? {}),
+      mistakes:
+          (json['mistakes_in_session'] as List<dynamic>? ??
+                  json['mistakes'] as List<dynamic>? ??
+                  [])
+              .map((e) {
+                if (e is Map && e.containsKey('mistake')) {
+                  return MistakeModel(
+                    id: e['id'] ?? 0,
+                    page: e['page'] ?? 0,
+                    title: (e['mistake']?['title'] ?? '').toString(),
+                  );
+                } else {
+                  return MistakeModel(
+                    id: e['id'] ?? 0,
+                    page: e['page'] ?? 0,
+                    title: (e['title'] ?? '').toString(),
+                  );
+                }
+              })
+              .toList(),
+    );
   }
 }

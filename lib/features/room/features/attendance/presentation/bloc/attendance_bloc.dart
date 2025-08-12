@@ -9,10 +9,11 @@ part 'attendance_state.dart';
 class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
   final AttendanceRepo _attendanceRepo;
 
-    Map<int, int> delays = {};
+  Map<int, int> delays = {};
 
   AttendanceBloc(AttendanceRepo attendanceRepo)
-    : _attendanceRepo = attendanceRepo ,super(AttendanceInitial()) {
+    : _attendanceRepo = attendanceRepo,
+      super(AttendanceInitial()) {
     on<SendAttendance>((event, emit) async {
       emit(AttendanceLoading());
       (await _attendanceRepo.sendAttendance(event.attendence)).fold(

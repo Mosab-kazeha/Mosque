@@ -12,12 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return
-    // BlocBuilder<HomeBloc, HomeState>(
-    //   builder: (context, state) {
-    //     if (state is HomeGroupSelected) {
-    //       final group = state.group as GroupModel;
-    //       final students = List<StudentModel>.from(state.students);
     return Column(
       children: [
         ClassInfoCard(group: group),

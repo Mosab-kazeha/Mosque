@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:saas_mosque/core/router/routes_config.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
@@ -27,16 +29,7 @@ class StudentsList extends StatelessWidget {
         final student = students[index];
         return InkWell(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder:
-            //         (context) => StudentDetailsScreen(
-            //           student: student,
-            //           groupId: groupId,
-            //         ),
-            //   ),
-            // );
+            context.push(AppRoutes.kStudentScreen, extra: student);
           },
           child: Container(
             padding: const EdgeInsets.all(12),

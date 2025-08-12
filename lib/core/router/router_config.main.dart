@@ -5,46 +5,29 @@ abstract final class AppRouter {
     routes: [
       GoRoute(
         path: AppRoutes.kSplashScreen,
-        builder: (context, state) => const SplashScreen(),
+        builder: (context, state) => SplashScreen(serviceLocater()),
       ),
       GoRoute(
         path: AppRoutes.kLoginScreen,
         builder:
-            (context, state) => BlocProvider(
-              create: (context) => serviceLocater<AuthBloc>(),
+            (context, state) => BlocProvider.value(
+              value: serviceLocater<AuthBloc>(),
               child: const LoginScreen(),
             ),
       ),
-      // GoRoute(
-      //   path: AppRoutes.kHomeScreen,
-      //   builder:
-      //       (context, state) =>
-      //       //  BlocProvider(
-      //       //   create: (context) => serviceLocater<HomeBloc>(),
-      //       //  // //! call the event setSelectedGroup
-      //       //   // ..add(
-      //       //   //   SetSelectedGroup(state.group, satae.group.students),
-      //       //   // ),
-      //       //   child:
-      //       HomeScreen(group: state.extra as GroupModel),
-      //   // ),
-      // ),
       GoRoute(
         path: AppRoutes.kCampaignsScreen,
         builder:
-            (context, state) => BlocProvider(
-              create:
-                  (context) =>
-                      serviceLocater<CampaignsBloc>()..add(GetCampaigns()),
+            (context, state) => BlocProvider.value(
+              value: serviceLocater<CampaignsBloc>()..add(GetCampaigns()),
               child: const CampaignsScreen(),
             ),
       ),
       GoRoute(
         path: AppRoutes.kGroupsScreen,
         builder:
-            (context, state) => BlocProvider(
-              create:
-                  (context) => serviceLocater<GroupsBloc>()..add(GetGroups()),
+            (context, state) => BlocProvider.value(
+              value: serviceLocater<GroupsBloc>()..add(GetGroups()),
               child: const GroupsScreen(),
             ),
       ),
@@ -52,6 +35,18 @@ abstract final class AppRouter {
         path: AppRoutes.kRoomScreen,
         builder:
             (context, state) => RoomScreen(group: state.extra as GroupModel),
+      ),
+      GoRoute(
+        path: AppRoutes.kSessionScreen,
+        builder: (context, state) => const SessionScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.kStudentScreen,
+        builder:
+            (context, state) => BlocProvider.value(
+              value: serviceLocater<StudentBloc>(),
+              child: StudentDetailsScreen(student: state.extra as StudentModel),
+            ),
       ),
     ],
   );

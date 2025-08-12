@@ -10,7 +10,7 @@ class MosqueModel {
   final bool isActive;
   final String createdAt;
   final String updatedAt;
-  final Map<String, dynamic> metadata;
+  // final Map<String, dynamic>? metadata;
 
   MosqueModel({
     required this.id,
@@ -24,7 +24,7 @@ class MosqueModel {
     required this.isActive,
     required this.createdAt,
     required this.updatedAt,
-    required this.metadata,
+    // required this.metadata,
   });
 
   factory MosqueModel.fromJson(Map<String, dynamic> json) {
@@ -40,7 +40,7 @@ class MosqueModel {
       isActive: json['is_active'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
-      metadata: Map<String, dynamic>.from(json['metadata'] ?? {}),
+      // metadata: Map<String, dynamic>.from(json['metadata'] ?? {}),
     );
   }
 }

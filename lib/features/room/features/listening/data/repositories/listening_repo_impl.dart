@@ -15,35 +15,35 @@ class ListeningRepoImpl extends ListeningRepo {
   ListeningRepoImpl(DioHelper dioHelper) : _dioHelper = dioHelper;
 
   @override
-  Future<Either<Failure, List<ListeningModel>>> fetchSavingSessions({
-    required int studentId,
-  }) async {
+  Future<Either<Failure, List<ListeningModel>>> fetchListeningData() async {
     try {
-      final campaignId = serviceLocater.get<SharedPreferences>().getInt(
-        'campaign-id',
-      );
       final response = await _dioHelper.getData(
-        url: EndPoint.getSavingSessions,
+        url: EndPoint.fetchListeningData,
         query: {
-          'campaignId': campaignId,
-          'teacherId': 1,
-          'studentId': studentId,
+          "dateTo": "2025-12-31",
+          "dateFrom": "2024-01-01",
+          "teacherId": serviceLocater.get<SharedPreferences>().get(
+            'teacher-id',
+          ),
+          "campaignId": serviceLocater.get<SharedPreferences>().get(
+            'campaign-id',
+          ),
         },
       );
 
-      log("Fetch Saving Sessions Success: ${response.data}");
+      log("Fetch Listening Data Success: ${response.data}");
 
       if (response.data is List) {
         final List<ListeningModel> sessions = [];
-        for (var session in response.data) {
-          sessions.add(ListeningModel.fromJson(session));
+        for (var listening in response.data) {
+          sessions.add(ListeningModel.fromJson(listening));
         }
         return right(sessions);
       } else {
         throw Exception('Unexpected response format');
       }
     } catch (e) {
-      log("Fetch Saving Sessions Failure: ${e.toString()}");
+      log("Fetch Listening Data Failure: ${e.toString()}");
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }

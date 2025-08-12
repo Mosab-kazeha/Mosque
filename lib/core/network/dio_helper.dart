@@ -33,7 +33,12 @@ class DioHelper {
     return await dio.post(
       url,
       queryParameters: query,
-      options: Options(headers: {"authorization": "Bearer $token"}),
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+          'Content-Type': 'application/json',
+        },
+      ),
       data: data,
     );
   }

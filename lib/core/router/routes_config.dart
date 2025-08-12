@@ -5,4 +5,6 @@ abstract final class AppRoutes {
   static const String kHomeScreen = "/home";
   static const String kCampaignsScreen = "/campaigns";
   static const String kGroupsScreen = "/groups";
+  static const String kSessionScreen = "/session";
+  static const String kStudentScreen = "/student";
 }

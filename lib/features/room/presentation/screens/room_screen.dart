@@ -5,6 +5,7 @@ import 'package:saas_mosque/core/widget/custom_app_bar.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/bloc/attendance_bloc.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/screens/attendance_screen.dart';
 import 'package:saas_mosque/features/room/features/home/presentation/presentation/screens/home_screen.dart';
+import 'package:saas_mosque/features/room/features/listening/presentation/bloc/listening_bloc.dart';
 import 'package:saas_mosque/features/room/features/listening/presentation/screens/listening_screen.dart';
 import 'package:saas_mosque/features/room/presentation/widgets/custom_drawer.dart';
 import 'package:saas_mosque/features/room/presentation/widgets/custom_navigation_bar.dart';
@@ -35,17 +36,26 @@ class _RoomScreenState extends State<RoomScreen> {
         },
       ),
       endDrawer: const CustomDrawer(),
-      body: IndexedStack(
-        index: currentIndex,
-        children: [
-          BlocProvider(
-            create: (context) => serviceLocater.get<AttendanceBloc>(),
-            child: AttendanceScreen(group: widget.group),
-          ),
-          HomeScreen(group: widget.group),
-          const ListeningScreen(),
-        ],
-      ),
+      body: () {
+        switch (currentIndex) {
+          case 0:
+            return BlocProvider.value(
+              value: serviceLocater.get<AttendanceBloc>(),
+              child: AttendanceScreen(group: widget.group),
+            );
+          case 1:
+            return HomeScreen(group: widget.group);
+          case 2:
+            return BlocProvider.value(
+              value:
+                  serviceLocater.get<ListeningBloc>()
+                    ..add(FetchListeningData()),
+              child: ListeningScreen(students: widget.group.students),
+            );
+          default:
+            return const SizedBox();
+        }
+      }(),
     );
   }
 }
