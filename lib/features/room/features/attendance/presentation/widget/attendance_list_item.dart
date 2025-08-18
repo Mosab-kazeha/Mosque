@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';import 'package:saas_mosque/core/style/font_style.dart';
+import 'package:flutter/material.dart';
+import 'package:saas_mosque/core/style/font_style.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/widget/status_button.dart';
 import '../../../../../../core/utils/educational_text.dart';
@@ -35,7 +36,6 @@ class AttendanceListItem extends StatelessWidget {
                 color: Colors.orange,
                 onSetDelay: onSetDelay,
                 selected: selectedDelay,
-
               ),
               StatusButton(
                 label: 'غائب',
@@ -56,10 +56,17 @@ class AttendanceListItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              ResponsiveText(
-                "${student.firstName} ${student.lastName}",
-                fontSize: FontTextSize.bodyFontSize,
-                fontWeight: FontWeight.bold,
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width * 0.29,
+                child: Center(
+                  child: ResponsiveText(
+                    "${student.firstName} ${student.lastName}",
+                    fontSize: FontTextSize.bodyFontSize,
+                    fontWeight: FontWeight.bold,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                  ),
+                ),
               ),
               EducationalClassText(classNumber: student.educationalClass),
             ],

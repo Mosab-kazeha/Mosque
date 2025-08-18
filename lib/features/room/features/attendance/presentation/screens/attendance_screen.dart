@@ -30,6 +30,7 @@ class AttendanceScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is AttendanceSuccess) {
           CustomSnackBar.show(context, 'تم أخذ الحضور بنجاح');
+          BlocProvider.of<AttendanceBloc>(context).delays = {};
         } else if (state is AttendanceFailure) {
           CustomSnackBar.show(context, state.message);
         }

@@ -25,7 +25,7 @@ import 'features/room/features/student/data/repositories/student_repo_impl.dart'
 
 final serviceLocater = GetIt.instance;
 
-void init() async {
+Future<void> init() async {
   serviceLocater.registerSingleton<SharedPreferences>(
     await SharedPreferences.getInstance(),
   );
