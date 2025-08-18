@@ -26,7 +26,7 @@ final class SplashRepoImpl extends SplashRepo {
 
         await serviceLocater.get<SharedPreferences>().setString(
           "teacher-id",
-          response.data['teacher_id'],
+          response.data['id'].toString(),
         );
 
         return right(null);
