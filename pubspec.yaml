@@ -30,7 +30,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/icon.png.jpeg
+    - assets/images/icon.png
 
   fonts:
     - family: Almarai
@@ -45,6 +45,7 @@ flutter:
           weight: 800
 
 flutter_launcher_icons:
-  image_path: "images/icon.png.jpeg"
+  image_path: "assets/images/icon.png"
   android: true
   ios: false
+
