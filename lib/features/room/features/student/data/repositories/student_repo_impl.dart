@@ -90,7 +90,7 @@ class StudentRepoImpl extends StudentRepo {
           'campaignId': serviceLocater.get<SharedPreferences>().getInt(
             'campaign-id',
           ),
-          'teacherId': serviceLocater.get<SharedPreferences>().getInt(
+          'teacherId': serviceLocater.get<SharedPreferences>().getString(
             'teacher-id',
           ),
           'studentId': studentId,

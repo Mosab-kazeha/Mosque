@@ -36,6 +36,7 @@ class CustomDrawer extends StatelessWidget {
               await prefs.remove('group_id');
               await prefs.remove('teacher-id');
               await prefs.remove('token');
+              await prefs.remove('permessions');
               // ignore: use_build_context_synchronously
               context.pushReplacement(AppRoutes.kLoginScreen);
             },

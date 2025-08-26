@@ -2,18 +2,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:saas_mosque/core/data/models/group_model.dart';
 import 'package:saas_mosque/core/router/routes_config.dart';
+import 'package:saas_mosque/features/auth/data/repositories/auth_repo.dart';
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:saas_mosque/features/campaigns/data/repositories/campaigns_repo.dart';
 import 'package:saas_mosque/features/campaigns/presentation/bloc/campaigns_bloc.dart';
+import 'package:saas_mosque/features/groups/data/repositories/groups_repo.dart';
 import 'package:saas_mosque/features/groups/presentation/bloc/groups_bloc.dart';
 import 'package:saas_mosque/features/groups/presentation/screens/groups_screen.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
+import 'package:saas_mosque/features/room/data/repositories/room_repo.dart';
 import 'package:saas_mosque/features/room/features/listening/presentation/screens/session_screen.dart';
+import 'package:saas_mosque/features/room/features/student/data/repositories/student_repo.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/bloc/student_bloc.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/screens/student_details_screen.dart';
+import 'package:saas_mosque/features/room/presentation/bloc/room_bloc.dart';
 import 'package:saas_mosque/features/room/presentation/screens/room_screen.dart';
 import 'package:saas_mosque/features/splash/presentation/screen/splash_screen.dart';
 import 'package:saas_mosque/injection_container.dart';
-
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/campaigns/presentation/screens/campaigns_screen.dart';
+
 part 'router_config.main.dart';

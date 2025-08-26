@@ -10,31 +10,55 @@ abstract final class AppRouter {
       GoRoute(
         path: AppRoutes.kLoginScreen,
         builder:
-            (context, state) => BlocProvider.value(
-              value: serviceLocater<AuthBloc>(),
+            (context, state) => BlocProvider(
+              create: (context) => AuthBloc(serviceLocater<AuthRepo>()),
               child: const LoginScreen(),
             ),
+        // builder:
+        //     (context, state) => BlocProvider.value(
+        //       value: serviceLocater<AuthBloc>(),
+        //       child: const LoginScreen(),
+        //     ),
       ),
       GoRoute(
         path: AppRoutes.kCampaignsScreen,
         builder:
-            (context, state) => BlocProvider.value(
-              value: serviceLocater<CampaignsBloc>()..add(GetCampaigns()),
+            (context, state) => BlocProvider(
+              create:
+                  (context) => CampaignsBloc(serviceLocater<CampaignsRepo>()),
               child: const CampaignsScreen(),
             ),
+        // builder:
+        //     (context, state) => BlocProvider.value(
+        //       value: serviceLocater<CampaignsBloc>(),
+        //       child: const CampaignsScreen(),
+        //     ),
       ),
       GoRoute(
         path: AppRoutes.kGroupsScreen,
         builder:
-            (context, state) => BlocProvider.value(
-              value: serviceLocater<GroupsBloc>()..add(GetGroups()),
+            (context, state) => BlocProvider(
+              create: (context) => GroupsBloc(serviceLocater<GroupsRepo>()),
               child: const GroupsScreen(),
             ),
+        // builder:
+        //     (context, state) => BlocProvider.value(
+        //       value: serviceLocater<GroupsBloc>(),
+        //       child: const GroupsScreen(),
+        //     ),
       ),
       GoRoute(
         path: AppRoutes.kRoomScreen,
         builder:
-            (context, state) => RoomScreen(group: state.extra as GroupModel),
+            (context, state) => BlocProvider(
+              create: (context) => RoomBloc(serviceLocater<RoomRepo>()),
+              child: RoomScreen(group: state.extra as GroupModel),
+            ),
+        // builder:
+        //     (context, state) => BlocProvider.value(
+        //       value: serviceLocater<RoomBloc>(),
+        //       child: RoomScreen(group: state.extra as GroupModel),
+        //     ),
       ),
       GoRoute(
         path: AppRoutes.kSessionScreen,
@@ -43,10 +67,15 @@ abstract final class AppRouter {
       GoRoute(
         path: AppRoutes.kStudentScreen,
         builder:
-            (context, state) => BlocProvider.value(
-              value: serviceLocater<StudentBloc>(),
+            (context, state) => BlocProvider(
+              create: (context) => StudentBloc(serviceLocater<StudentRepo>()),
               child: StudentDetailsScreen(student: state.extra as StudentModel),
             ),
+        // builder:
+        //     (context, state) => BlocProvider.value(
+        //       value: serviceLocater<StudentBloc>(),
+        //       child: StudentDetailsScreen(student: state.extra as StudentModel),
+        //     ),
       ),
     ],
   );

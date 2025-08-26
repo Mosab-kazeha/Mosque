@@ -15,6 +15,8 @@ final class GroupsSuccess extends GroupsState {
   const GroupsSuccess(this.groups);
 }
 
+final class PermessionsSuccess extends GroupsState {}
+
 final class GroupsFailure extends GroupsState {
   final String message;
 

@@ -4,4 +4,6 @@ import 'package:saas_mosque/core/error/failure.dart';
 
 abstract class GroupsRepo {
   Future<Either<Failure, List<GroupModel>>> getGroups();
+
+  // Future<Either<Failure, List<Permessions>>> getPermessions();
 }

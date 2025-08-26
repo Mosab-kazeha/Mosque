@@ -27,6 +27,7 @@ class DioHelper {
     required String url,
     Map<String, dynamic>? query,
     dynamic data,
+    Map<String, dynamic>? headers,
     // Map<String, dynamic>? data,
     String? token,
   }) async {
@@ -35,8 +36,11 @@ class DioHelper {
       queryParameters: query,
       options: Options(
         headers: {
-          "Authorization": "Bearer $token",
-          'Content-Type': 'application/json',
+          ...{
+            "Authorization": "Bearer $token",
+            'Content-Type': 'application/json',
+          },
+          ...headers ?? {},
         },
       ),
       data: data,

@@ -45,4 +45,40 @@ class GroupsRepoImpl extends GroupsRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  // @override
+  // Future<Either<Failure, List<Permessions>>> getPermessions() async {
+  //   try {
+  //     final response = await _dioHelper.postData(
+  //       url: EndPoint.myPermessions,
+  //       token: serviceLocater.get<SharedPreferences>().getString('token'),
+  //       headers: {
+  //         'campaign_id': serviceLocater.get<SharedPreferences>().getInt(
+  //           'campaign-id',
+  //         ),
+  //       },
+  //     );
+  //     log("Get My Permessions Success: ${response.data}");
+
+  //     if (response.data['permissions'] is List) {
+  //       final List<Permessions> permessions = [];
+  //       for (String permession in response.data['permissions']) {
+  //         permessions.add(
+  //           Permessions.values.firstWhere(
+  //             (element) => element.toString() == permession,
+  //           ),
+  //         );
+  //       }
+  //       return right(permessions);
+  //     } else {
+  //       throw Exception('Unexpected response format');
+  //     }
+  //   } catch (e) {
+  //     log("Get My Permessions Failure: ${e.toString()}");
+  //     if (e is DioException) {
+  //       return left(ServerFailure.fromDioException(e));
+  //     }
+  //     return left(ServerFailure(e.toString()));
+  //   }
+  // }
 }

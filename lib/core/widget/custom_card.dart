@@ -47,6 +47,7 @@ class CustomCard extends StatelessWidget {
                 color: AppPalette.white,
                 fontWeight: FontWeight.bold,
                 fontSize: FontTextSize.titleFontSize,
+                textDirection: TextDirection.rtl,
               ),
               const VerticalSpace(8),
               ResponsiveText(

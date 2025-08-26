@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:saas_mosque/core/router/routes_config.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/utils/permessions.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
-
 import '../../../../../../../core/style/font_style.dart';
 import '../../../../../../../core/utils/educational_text.dart';
 import '../../../../../data/model/student_model.dart';
@@ -29,6 +29,11 @@ class StudentsList extends StatelessWidget {
         final student = students[index];
         return InkWell(
           onTap: () {
+            final permessions = getPermessionsList(null);
+            if (!(permessions.contains(Permessions.ATTENDANCE_MANAGEMENT) ||
+                permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT))) {
+              return;
+            }
             context.push(AppRoutes.kStudentScreen, extra: student);
           },
           child: Container(

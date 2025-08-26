@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/router/router_config.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/utils/my_bloc_observer.dart';
 import 'package:saas_mosque/core/utils/size_config.dart';
 
 import 'injection_container.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await di.init();
   runApp(const Mosque());
 }
@@ -21,6 +24,9 @@ class Mosque extends StatelessWidget {
       routerConfig: AppRouter.router,
       theme: ThemeData(
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: AppPalette.white),
+        ),
         colorScheme: const ColorScheme.light().copyWith(
           primary: AppPalette.backgroundColor,
         ),

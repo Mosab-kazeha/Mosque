@@ -27,22 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         fontWeight: FontWeight.bold,
       ),
       actions: actions,
-      // actions:
-      // [
-      //       Padding(
-      //         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      //         child: IconButton(
-      //           icon: const Icon(Icons.menu, color: Colors.white),
-      //           onPressed: () => Scaffold.of(context).openDrawer(),
-      //         ),
-      //       ),
-      //     ],
       leading: leading,
-      // leading:
-      // const Padding(
-      //       padding: EdgeInsets.symmetric(horizontal: 16.0),
-      //       child: Icon(Icons.notifications_none, color: Colors.white),
-      //     )
     );
   }
 

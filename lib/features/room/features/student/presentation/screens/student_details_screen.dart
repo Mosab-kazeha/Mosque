@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/style/font_style.dart';
+import 'package:saas_mosque/core/utils/permessions.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
-import 'package:saas_mosque/features/room/features/student/presentation/bloc/student_bloc.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/widget/student_info_tabbar.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/widget/student_saving_sessions_tabbar.dart';
-
 import '../widget/student_attendance_tabbar.dart';
 
 class StudentDetailsScreen extends StatefulWidget {
@@ -21,55 +19,29 @@ class StudentDetailsScreen extends StatefulWidget {
 
 class _StudentDetailsScreenState extends State<StudentDetailsScreen>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late final List<Permessions> permessions;
+  late final List<Tab> tabs;
 
   @override
   void initState() {
     super.initState();
-
-    _tabController = TabController(length: 3, vsync: this, initialIndex: 1);
-
-    _tabController.addListener(() {
-      // if (_tabController.index == 1) {
-      //   context.read<StudentBloc>().add(
-      //     GetStudentAttendance(studentId: widget.student.id),
-      //   );
-      // }
-
-      if (!_tabController.indexIsChanging) {
-        if (_tabController.index == 0) {
-          context.read<StudentBloc>().add(
-            GetStudentSavingSessions(studentId: widget.student.id),
-          );
-        }
-        if (_tabController.index == 2) {
-          context.read<StudentBloc>().add(
-            GetStudentInfo(studentId: widget.student.id),
-          );
-        }
-        if (_tabController.index == 1) {
-          context.read<StudentBloc>().add(
-            GetStudentAttendance(studentId: widget.student.id),
-          );
-        }
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
+    permessions = getPermessionsList(null);
+    // permessions = [
+    //   Permessions.ATTENDANCE_MANAGEMENT,
+    //   Permessions.SAVING_SESSION_MANAGEMENT,
+    // ];
+    tabs = _getTabsByPermessions();
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
+
     return DefaultTabController(
-      length: 3,
-      initialIndex: 1,
+      length: tabs.length,
+      initialIndex: 0,
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(iconTheme: const IconThemeData(color: AppPalette.black)),
         body: Column(
           children: [
             VerticalSpace(width * 0.05),
@@ -94,28 +66,47 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen>
             ),
             VerticalSpace(width * 0.05),
             TabBar(
-              controller: _tabController,
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorWeight: 3,
-              tabs: const [
-                Tab(text: 'تسميع'),
-                Tab(text: 'حضور'),
-                Tab(text: 'معلومات عامة'),
-              ],
+              tabs: tabs,
             ),
             Expanded(
               child: TabBarView(
-                controller: _tabController,
-                children: [
-                  const StudentSavingSessionsTabbar(),
-                  StudentAttendanceTabbar(studentId: widget.student.id),
-                  const StudentInfoTabbar(),
-                ],
+                children: _getTabBarViewChildrenByPermessions(),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  List<Tab> _getTabsByPermessions() {
+    final tabs = <Tab>[];
+
+    if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
+      tabs.add(const Tab(text: 'تسميع'));
+    }
+
+    if (permessions.contains(Permessions.ATTENDANCE_MANAGEMENT)) {
+      tabs.add(const Tab(text: 'حضور'));
+      tabs.add(const Tab(text: 'معلومات عامة'));
+    }
+
+    return tabs;
+  }
+
+  List<Widget> _getTabBarViewChildrenByPermessions() {
+    final children = <Widget>[];
+    if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
+      children.add(StudentSavingSessionsTabbar(studentId: widget.student.id));
+    }
+
+    if (permessions.contains(Permessions.ATTENDANCE_MANAGEMENT)) {
+      children.add(StudentAttendanceTabbar(studentId: widget.student.id));
+      children.add(StudentInfoTabbar(studentId: widget.student.id));
+    }
+
+    return children;
   }
 }

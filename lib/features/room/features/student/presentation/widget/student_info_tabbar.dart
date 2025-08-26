@@ -7,8 +7,22 @@ import 'package:saas_mosque/features/room/features/student/presentation/bloc/stu
 import '../../../../../../core/style/font_style.dart';
 import '../../../../../../core/widget/responsive_text.dart';
 
-class StudentInfoTabbar extends StatelessWidget {
-  const StudentInfoTabbar({super.key});
+class StudentInfoTabbar extends StatefulWidget {
+  final int studentId;
+  const StudentInfoTabbar({super.key, required this.studentId});
+
+  @override
+  State<StudentInfoTabbar> createState() => _StudentInfoTabbarState();
+}
+
+class _StudentInfoTabbarState extends State<StudentInfoTabbar> {
+  @override
+  void initState() {
+    context.read<StudentBloc>().add(
+      GetStudentInfo(studentId: widget.studentId),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -15,4 +15,5 @@ abstract final class EndPoint {
   }
 
   static const studentInfo = '/students/';
+  static const myPermessions = '/auth/my-permissions';
 }

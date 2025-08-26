@@ -19,5 +19,12 @@ class GroupsBloc extends Bloc<GroupsEvent, GroupsState> {
         (r) => emit(GroupsSuccess(r)),
       );
     });
+    // on<GetPermessions>((event, emit) async {
+    //   emit(GroupsLoading());
+    //   (await _groupsRepo.getPermessions()).fold(
+    //     (l) => emit(GroupsFailure(l.errorMessege)),
+    //     (r) => emit(PermessionsSuccess()),
+    //   );
+    // });
   }
 }
