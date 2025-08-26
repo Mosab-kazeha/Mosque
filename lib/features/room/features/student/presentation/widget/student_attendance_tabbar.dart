@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/style/font_style.dart';
+import 'package:saas_mosque/core/widget/custom_failur_screen.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/features/room/features/attendance/data/model/attendace_model.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/bloc/student_bloc.dart';
+
+import '../../../../../../core/widget/custom_circular_progress_indicator.dart';
 
 class StudentAttendanceTabbar extends StatefulWidget {
   final int studentId;
@@ -73,15 +78,18 @@ class _StudentAttendanceTabbarState extends State<StudentAttendanceTabbar> {
             },
           );
         } else if (state is StudentAttendanceFailure) {
-          return Center(
-            child: ResponsiveText(
-              state.message,
-              fontSize: FontTextSize.bodyFontSize,
-            ),
+          return FailureScreen(
+            onPressed: () {
+              log("the StudentAttendanceFailure message is${state.message}");
+              context.read<StudentBloc>().add(
+                GetStudentAttendance(studentId: widget.studentId),
+              );
+            },
           );
-        } else {
-          return const Center(child: CircularProgressIndicator());
+        } else if (state is StudentAttendanceLoading) {
+          return Center(child: CustomCircularProgressIndicator());
         }
+        return const SizedBox();
       },
     );
   }

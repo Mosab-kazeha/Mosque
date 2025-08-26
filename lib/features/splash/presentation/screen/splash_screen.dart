@@ -4,6 +4,8 @@ import 'package:saas_mosque/core/router/routes_config.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/features/splash/data/repositories/splash_repo.dart';
 
+import '../../../../core/widget/custom_circular_progress_indicator.dart';
+
 class SplashScreen extends StatefulWidget {
   final SplashRepo splashRepo;
   const SplashScreen(this.splashRepo, {super.key});
@@ -26,9 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFF2b836b),
-      body: Center(child: CircularProgressIndicator(color: AppPalette.white)),
+    return Scaffold(
+      backgroundColor: AppPalette.backgroundColor,
+      body: Center(
+        child: CustomCircularProgressIndicator(color: AppPalette.white),
+      ),
     );
   }
 }

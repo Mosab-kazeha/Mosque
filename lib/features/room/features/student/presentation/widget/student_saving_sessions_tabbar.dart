@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:saas_mosque/core/style/font_style.dart';
+import 'package:saas_mosque/core/widget/custom_failur_screen.dart';
 import 'package:saas_mosque/core/widget/listening_list.dart';
-import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/bloc/student_bloc.dart';
+
+import '../../../../../../core/widget/custom_circular_progress_indicator.dart';
 
 class StudentSavingSessionsTabbar extends StatefulWidget {
   final int studentId;
@@ -32,14 +35,18 @@ class _StudentSavingSessionsTabbarState
           return ListeningList(listenings: state.sessions);
         }
         if (state is StudentSavingSessionsLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CustomCircularProgressIndicator());
         }
         if (state is StudentSavingSessionsFailure) {
-          return Center(
-            child: ResponsiveText(
-              state.message,
-              fontSize: FontTextSize.bodyFontSize,
-            ),
+          return FailureScreen(
+            onPressed: () {
+              log(
+                "the StudentSavingSessionsFailure message is${state.message}",
+              );
+              context.read<StudentBloc>().add(
+                GetStudentSavingSessions(studentId: widget.studentId),
+              );
+            },
           );
         }
         return const SizedBox();

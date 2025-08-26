@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/data/models/group_model.dart';
 import 'package:saas_mosque/core/widget/custom_app_bar.dart';
+import 'package:saas_mosque/core/widget/custom_failur_screen.dart';
 import 'package:saas_mosque/features/groups/presentation/bloc/groups_bloc.dart';
 import 'package:saas_mosque/features/groups/presentation/widgets/groups_list.dart';
 import 'package:saas_mosque/features/room/presentation/widgets/custom_drawer.dart';
+
+import '../../../../core/widget/custom_circular_progress_indicator.dart';
 
 class GroupsScreen extends StatefulWidget {
   const GroupsScreen({super.key});
@@ -29,10 +34,15 @@ class _GroupsScreenState extends State<GroupsScreen> {
       body: BlocBuilder<GroupsBloc, GroupsState>(
         builder: (context, state) {
           if (state is GroupsLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: CustomCircularProgressIndicator());
           }
           if (state is GroupsFailure) {
-            return Text(state.message);
+            log("the GroupsFailure message is${state.message}");
+            return FailureScreen(
+              onPressed: () {
+                context.read<GroupsBloc>().add(GetGroups());
+              },
+            );
           }
           if (state is GroupsSuccess) {
             return _checkGroupsData(state.groups);

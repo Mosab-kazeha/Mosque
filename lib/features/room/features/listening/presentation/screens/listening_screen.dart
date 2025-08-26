@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/widget/custom_failur_screen.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
 import 'package:saas_mosque/features/room/features/listening/presentation/bloc/listening_bloc.dart';
 import 'package:saas_mosque/features/room/features/listening/presentation/widgets/listening_info_banner.dart';
 import 'package:saas_mosque/core/widget/listening_list.dart';
 import 'package:saas_mosque/features/room/features/listening/presentation/widgets/start_session_button.dart';
+
+import '../../../../../../core/widget/custom_circular_progress_indicator.dart';
 
 class ListeningScreen extends StatelessWidget {
   final List<StudentModel> students;
@@ -16,12 +20,16 @@ class ListeningScreen extends StatelessWidget {
     return BlocBuilder<ListeningBloc, ListeningState>(
       builder: (context, state) {
         if (state is ListeningLoading) {
-          return const Center(
-            child: CircularProgressIndicator(color: AppPalette.backgroundColor),
-          );
+          return Center(child: CustomCircularProgressIndicator());
         }
         if (state is ListeningFailure) {
-          return Text(state.message);
+          return FailureScreen(
+            onPressed: () {
+              log("the ListeningFailure message is${state.message}");
+
+              context.read<ListeningBloc>().add(FetchListeningData());
+            },
+          );
         }
         if (state is ListeningSuccess) {
           return Column(

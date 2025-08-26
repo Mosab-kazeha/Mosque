@@ -4,6 +4,8 @@ import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/utils/size_config.dart';
 import 'package:saas_mosque/features/auth/presentation/bloc/auth_bloc.dart';
 
+import '../../../../core/widget/custom_circular_progress_indicator.dart';
+
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
 
@@ -23,11 +25,7 @@ class LoginButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               color: AppPalette.grey.withAlpha(120),
             ),
-            child: const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                AppPalette.backgroundColor,
-              ),
-            ),
+            child: CustomCircularProgressIndicator(color: AppPalette.white),
           );
         }
         return ElevatedButton(

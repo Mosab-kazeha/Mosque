@@ -7,6 +7,7 @@ import 'package:saas_mosque/core/widget/spaces.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/widget/student_info_tabbar.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/widget/student_saving_sessions_tabbar.dart';
+import '../../../../../../core/utils/size_config.dart';
 import '../widget/student_attendance_tabbar.dart';
 
 class StudentDetailsScreen extends StatefulWidget {
@@ -35,8 +36,6 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.sizeOf(context).width;
-
     return DefaultTabController(
       length: tabs.length,
       initialIndex: 0,
@@ -44,7 +43,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen>
         appBar: AppBar(iconTheme: const IconThemeData(color: AppPalette.black)),
         body: Column(
           children: [
-            VerticalSpace(width * 0.05),
+            VerticalSpace(SizeConfig.width * 0.05),
             Center(
               child: CircleAvatar(
                 radius: 48,
@@ -56,7 +55,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen>
                 ),
               ),
             ),
-            VerticalSpace(width * 0.03),
+            VerticalSpace(SizeConfig.width * 0.03),
             Center(
               child: ResponsiveText(
                 '${widget.student.firstName} ${widget.student.lastName}',
@@ -64,7 +63,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen>
                 fontWeight: FontWeight.bold,
               ),
             ),
-            VerticalSpace(width * 0.05),
+            VerticalSpace(SizeConfig.width * 0.05),
             TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorWeight: 3,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/data/models/group_model.dart';
-import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/style/font_style.dart';
 import 'package:saas_mosque/core/widget/custom_snack_bar.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
@@ -9,6 +8,8 @@ import 'package:saas_mosque/core/widget/spaces.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/bloc/attendance_bloc.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/widget/attendance_list.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/widget/send_attendance_button.dart';
+
+import '../../../../../../core/widget/custom_circular_progress_indicator.dart';
 
 class AttendanceScreen extends StatelessWidget {
   // final List<StudentModel> students;
@@ -37,9 +38,7 @@ class AttendanceScreen extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is AttendanceLoading) {
-          return const Center(
-            child: CircularProgressIndicator(color: AppPalette.backgroundColor),
-          );
+          return Center(child: CustomCircularProgressIndicator());
         }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

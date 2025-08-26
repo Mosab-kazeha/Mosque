@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/widget/custom_failur_screen.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
 import 'package:saas_mosque/features/room/features/student/presentation/bloc/student_bloc.dart';
 
 import '../../../../../../core/style/font_style.dart';
+import '../../../../../../core/widget/custom_circular_progress_indicator.dart';
 import '../../../../../../core/widget/responsive_text.dart';
 
 class StudentInfoTabbar extends StatefulWidget {
@@ -63,15 +67,18 @@ class _StudentInfoTabbarState extends State<StudentInfoTabbar> {
             },
           );
         } else if (state is StudentInfoFailure) {
-          return Center(
-            child: ResponsiveText(
-              state.message,
-              fontSize: FontTextSize.bodyFontSize,
-            ),
+          return FailureScreen(
+            onPressed: () {
+              log("the StudentInfoFailure message is${state.message}");
+              context.read<StudentBloc>().add(
+                GetStudentInfo(studentId: widget.studentId),
+              );
+            },
           );
-        } else {
-          return const Center(child: CircularProgressIndicator());
+        } else if (state is StudentInfoLoading) {
+          return Center(child: CustomCircularProgressIndicator());
         }
+        return const SizedBox();
       },
     );
   }

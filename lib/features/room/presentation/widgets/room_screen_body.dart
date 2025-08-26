@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/data/models/group_model.dart';
 import 'package:saas_mosque/core/utils/permessions.dart';
+import 'package:saas_mosque/core/widget/custom_circular_progress_indicator.dart';
+import 'package:saas_mosque/core/widget/custom_failur_screen.dart';
 import 'package:saas_mosque/features/room/features/attendance/data/repositories/attendance_repo.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/bloc/attendance_bloc.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/screens/attendance_screen.dart';
@@ -26,10 +30,15 @@ class RoomScreenBody extends StatelessWidget {
     return BlocBuilder<RoomBloc, RoomState>(
       builder: (context, state) {
         if (state is RoomLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CustomCircularProgressIndicator());
         }
         if (state is RoomFailure) {
-          return Center(child: Text(state.message));
+          return FailureScreen(
+            onPressed: () {
+              log("the RoomFailure message is${state.message}");
+              context.read<RoomBloc>().add(GetPermessions());
+            },
+          );
         }
         if (state is PermessionsSuccess) {
           // state.permessions = [

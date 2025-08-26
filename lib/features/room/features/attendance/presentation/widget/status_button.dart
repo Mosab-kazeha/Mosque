@@ -34,7 +34,13 @@ class StatusButton extends StatelessWidget {
                         options
                             .map(
                               (minute) => ListTile(
-                                title: Text('متأخر $minute دقيقة'),
+                                title: ResponsiveText(
+                                  'متأخر $minute دقيقة',
+                                  fontSize: FontTextSize.bodyFontSize,
+                                  fontWeight: FontWeight.bold,
+                                  textAlign: TextAlign.center,
+                                ),
+
                                 onTap: () => Navigator.pop(context, minute),
                               ),
                             )
