@@ -38,7 +38,7 @@ class AttendanceScreen extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is AttendanceLoading) {
-          return Center(child: CustomCircularProgressIndicator());
+          return const Center(child: CustomCircularProgressIndicator());
         }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

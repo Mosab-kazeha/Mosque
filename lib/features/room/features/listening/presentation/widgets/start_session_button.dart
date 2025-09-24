@@ -3,6 +3,7 @@ import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/style/font_style.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
+import 'package:saas_mosque/features/room/features/listening/presentation/widgets/start_session_sheet.dart';
 
 class StartSessionButton extends StatelessWidget {
   final List<StudentModel> students;
@@ -23,12 +24,11 @@ class StartSessionButton extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // log("بدأ جلسة تسميع");
-              // showModalBottomSheet(
-              //   context: context,
-              //   isScrollControlled: true,
-              //   builder: (context) => StartSessionSheet(students: students),
-              // );
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => StartSessionSheet(students: students),
+              );
             },
 
             child: const ResponsiveText(

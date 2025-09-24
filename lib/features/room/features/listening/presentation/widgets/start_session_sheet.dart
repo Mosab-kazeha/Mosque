@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:saas_mosque/core/router/routes_config.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/style/font_style.dart';
-import 'package:saas_mosque/core/widget/custom_snack_bar.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
@@ -62,6 +61,7 @@ class _StartSessionSheetState extends State<StartSessionSheet> {
                     return DropdownMenuItem<StudentModel>(
                       value: student,
                       child: ResponsiveText(
+                        fontSize: FontTextSize.bodyFontSize,
                         "${student.firstName} ${student.lastName}",
                       ),
                     );
@@ -102,19 +102,24 @@ class _StartSessionSheetState extends State<StartSessionSheet> {
                 ),
               ],
             ),
-            const HorizontalSpace(20),
+            const VerticalSpace(20),
             SizedBox(
               width: double.infinity,
               child: Builder(
                 builder: (context) {
                   return ElevatedButton(
                     onPressed: () async {
-                      if (selectedStudent == null ||
-                          startPageController.text.isEmpty ||
-                          endPageController.text.isEmpty) {
-                        CustomSnackBar.show(context, 'يرجى تعبئة جميع الحقول');
-                        return;
-                      }
+                      // if (selectedStudent == null ||
+                      //     startPageController.text.isEmpty ||
+                      //     endPageController.text.isEmpty) {
+                      //   CustomSnackBar.show(
+                      //     context,
+                      //     type: SnackBarType.error,
+                      //     'يرجى تعبئة جميع الحقول',
+                      //     atTop: true,
+                      //   );
+                      //   return;
+                      // }
 
                       context.pop();
 
@@ -129,12 +134,14 @@ class _StartSessionSheetState extends State<StartSessionSheet> {
                     ),
                     child: const ResponsiveText(
                       "بدء جلسة التسميع",
+                      fontSize: FontTextSize.bodyFontSize,
                       color: AppPalette.white,
                     ),
                   );
                 },
               ),
             ),
+            const VerticalSpace(40),
           ],
         ),
       ),

@@ -87,7 +87,7 @@ class _StudentAttendanceTabbarState extends State<StudentAttendanceTabbar> {
             },
           );
         } else if (state is StudentAttendanceLoading) {
-          return Center(child: CustomCircularProgressIndicator());
+          return const Center(child: CustomCircularProgressIndicator());
         }
         return const SizedBox();
       },

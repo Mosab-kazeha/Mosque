@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:saas_mosque/core/style/font_style.dart';
+import 'package:saas_mosque/core/utils/size_config.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 
 enum SnackBarType { error, success, other }
@@ -8,7 +9,13 @@ enum SnackBarType { error, success, other }
 class CustomSnackBar extends StatelessWidget {
   final String message;
   final TextStyle? messageStyle;
-  const CustomSnackBar({super.key, required this.message, this.messageStyle});
+  final bool atTop;
+  const CustomSnackBar({
+    super.key,
+    required this.message,
+    this.messageStyle,
+    this.atTop = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +35,7 @@ class CustomSnackBar extends StatelessWidget {
     BuildContext context,
     String message, {
     SnackBarType type = SnackBarType.other,
+    bool atTop = false,
     TextStyle? messageStyle,
   }) {
     ScaffoldMessenger.of(context)
@@ -36,7 +44,11 @@ class CustomSnackBar extends StatelessWidget {
         SnackBar(
           backgroundColor: _backgroundColor(context, type).withAlpha(1),
           duration: _duration(type),
-          content: CustomSnackBar(message: message, messageStyle: messageStyle),
+          content: CustomSnackBar(
+            message: message,
+            messageStyle: messageStyle,
+            atTop: atTop,
+          ),
           behavior: SnackBarBehavior.floating,
           dismissDirection: DismissDirection.horizontal,
           shape: OutlineInputBorder(
@@ -51,7 +63,11 @@ class CustomSnackBar extends StatelessWidget {
             ),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          margin: const EdgeInsets.all(10),
+          margin: EdgeInsets.only(
+            left: 10,
+            right: 10,
+            bottom: atTop ? SizeConfig.height - 100 : 10,
+          ),
         ),
       );
   }
@@ -65,6 +81,6 @@ class CustomSnackBar extends StatelessWidget {
 
   static Duration _duration(SnackBarType type) {
     if (type == SnackBarType.success) return const Duration(seconds: 3);
-    return const Duration(seconds: 5);
+    return const Duration(seconds: 10);
   }
 }

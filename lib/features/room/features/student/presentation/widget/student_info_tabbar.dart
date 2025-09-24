@@ -76,7 +76,7 @@ class _StudentInfoTabbarState extends State<StudentInfoTabbar> {
             },
           );
         } else if (state is StudentInfoLoading) {
-          return Center(child: CustomCircularProgressIndicator());
+          return const Center(child: CustomCircularProgressIndicator());
         }
         return const SizedBox();
       },

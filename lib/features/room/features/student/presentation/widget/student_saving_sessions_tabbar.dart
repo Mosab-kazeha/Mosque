@@ -35,7 +35,7 @@ class _StudentSavingSessionsTabbarState
           return ListeningList(listenings: state.sessions);
         }
         if (state is StudentSavingSessionsLoading) {
-          return Center(child: CustomCircularProgressIndicator());
+          return const Center(child: CustomCircularProgressIndicator());
         }
         if (state is StudentSavingSessionsFailure) {
           return FailureScreen(

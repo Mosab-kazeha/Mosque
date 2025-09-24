@@ -7,7 +7,7 @@ class ResponsiveText extends StatelessWidget {
   final String text;
   final TextAlign? textAlign;
   final TextDirection? textDirection;
-  final FontTextSize? fontSize;
+  final FontTextSize fontSize;
   final FontWeight? fontWeight;
   final int? maxLines;
   final TextOverflow? overflow;
@@ -16,7 +16,7 @@ class ResponsiveText extends StatelessWidget {
   const ResponsiveText(
     this.text, {
     super.key,
-    this.fontSize,
+    required this.fontSize,
     this.textAlign,
     this.maxLines,
     this.overflow,
@@ -42,7 +42,7 @@ class ResponsiveText extends StatelessWidget {
       // ),
       style: TextStyle(
         fontFamily: AppFontStyle.fontFamily,
-        fontSize: getResponsiveFontSize(AppFontStyle.selectTextSize(fontSize!)),
+        fontSize: getResponsiveFontSize(AppFontStyle.selectTextSize(fontSize)),
         fontWeight: fontWeight,
         color: color,
       ),

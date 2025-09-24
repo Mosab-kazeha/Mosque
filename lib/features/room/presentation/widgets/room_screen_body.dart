@@ -30,7 +30,7 @@ class RoomScreenBody extends StatelessWidget {
     return BlocBuilder<RoomBloc, RoomState>(
       builder: (context, state) {
         if (state is RoomLoading) {
-          return Center(child: CustomCircularProgressIndicator());
+          return const Center(child: CustomCircularProgressIndicator());
         }
         if (state is RoomFailure) {
           return FailureScreen(
@@ -71,7 +71,8 @@ class RoomScreenBody extends StatelessWidget {
       );
     }
 
-    if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
+    if (true) {
+      // if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
       pages.add(
         BlocProvider(
           create:

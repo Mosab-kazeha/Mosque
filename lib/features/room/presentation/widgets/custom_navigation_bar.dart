@@ -24,9 +24,9 @@ class CustomNavigationBar extends StatelessWidget {
           // ];
           final items = _getItemsByPermessions(state.permessions);
 
-          if (items.length < 2) {
-            return const SizedBox();
-          }
+          // if (items.length < 2) {
+          //   return const SizedBox();
+          // }
 
           return BottomNavigationBar(
             currentIndex: currentIndex,
@@ -56,7 +56,8 @@ class CustomNavigationBar extends StatelessWidget {
       );
     }
 
-    if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
+    if (true) {
+      // if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
       items.add(
         const BottomNavigationBarItem(icon: Icon(Icons.book), label: 'التسميع'),
       );

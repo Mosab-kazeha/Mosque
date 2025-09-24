@@ -25,7 +25,9 @@ class LoginButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               color: AppPalette.grey.withAlpha(120),
             ),
-            child: CustomCircularProgressIndicator(color: AppPalette.white),
+            child: const CustomCircularProgressIndicator(
+              color: AppPalette.white,
+            ),
           );
         }
         return ElevatedButton(

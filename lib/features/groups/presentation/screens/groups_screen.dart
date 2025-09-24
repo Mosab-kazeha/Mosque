@@ -34,7 +34,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
       body: BlocBuilder<GroupsBloc, GroupsState>(
         builder: (context, state) {
           if (state is GroupsLoading) {
-            return Center(child: CustomCircularProgressIndicator());
+            return const Center(child: CustomCircularProgressIndicator());
           }
           if (state is GroupsFailure) {
             log("the GroupsFailure message is${state.message}");

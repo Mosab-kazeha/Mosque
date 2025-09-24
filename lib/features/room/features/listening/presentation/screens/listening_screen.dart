@@ -20,7 +20,7 @@ class ListeningScreen extends StatelessWidget {
     return BlocBuilder<ListeningBloc, ListeningState>(
       builder: (context, state) {
         if (state is ListeningLoading) {
-          return Center(child: CustomCircularProgressIndicator());
+          return const Center(child: CustomCircularProgressIndicator());
         }
         if (state is ListeningFailure) {
           return FailureScreen(

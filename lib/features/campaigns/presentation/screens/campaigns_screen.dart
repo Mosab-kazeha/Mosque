@@ -33,7 +33,7 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
       body: BlocBuilder<CampaignsBloc, CampaignsState>(
         builder: (context, state) {
           if (state is CampaignsLoading) {
-            return Center(child: CustomCircularProgressIndicator());
+            return const Center(child: CustomCircularProgressIndicator());
           }
           if (state is CampaignsFailure) {
             log("the CampaignsFailure message is${state.message}");
