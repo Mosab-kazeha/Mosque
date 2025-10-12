@@ -60,9 +60,21 @@ abstract final class AppRouter {
         //       child: RoomScreen(group: state.extra as GroupModel),
         //     ),
       ),
+      // GoRoute(
+      //   path: AppRoutes.kSessionScreen,
+      //   builder:
+      //       (context, state) => BlocProvider.value(
+      //         value: serviceLocater.get<ListeningBloc>(),
+      //         child: SessionScreen(student: state.extra as StudentModel),
+      //       ),
+      // ),
       GoRoute(
         path: AppRoutes.kSessionScreen,
-        builder: (context, state) => const SessionScreen(),
+        builder:
+            (context, state) => BlocProvider.value(
+              value: serviceLocater.get<SessionBloc>(),
+              child: const SessionScreen(),
+            ),
       ),
       GoRoute(
         path: AppRoutes.kStudentScreen,
@@ -71,11 +83,34 @@ abstract final class AppRouter {
               create: (context) => StudentBloc(serviceLocater<StudentRepo>()),
               child: StudentDetailsScreen(student: state.extra as StudentModel),
             ),
+
         // builder:
         //     (context, state) => BlocProvider.value(
         //       value: serviceLocater<StudentBloc>(),
         //       child: StudentDetailsScreen(student: state.extra as StudentModel),
         //     ),
+      ),
+      GoRoute(
+        path: AppRoutes.kSurahsScreen,
+        builder:
+            (context, state) => BlocProvider.value(
+              value: serviceLocater.get<SessionBloc>(),
+              // create:
+              //     (context) => SessionBloc(serviceLocater.get<SessionRepo>()),
+              child: SurahsScreen(
+                student:
+                    // serviceLocater.get<SessionBloc>().selectedStudent ??
+                    state.extra as StudentModel,
+              ),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.kSurahPagesScreen,
+        builder:
+            (context, state) => BlocProvider.value(
+              value: serviceLocater.get<SessionBloc>(),
+              child: SurahPagesScreen(surah: state.extra as SurahModel),
+            ),
       ),
     ],
   );

@@ -7,13 +7,22 @@ import 'package:saas_mosque/features/room/data/model/student_model.dart';
 import 'package:saas_mosque/features/room/features/listening/presentation/bloc/listening_bloc.dart';
 import 'package:saas_mosque/features/room/features/listening/presentation/widgets/listening_info_banner.dart';
 import 'package:saas_mosque/core/widget/listening_list.dart';
-import 'package:saas_mosque/features/room/features/listening/presentation/widgets/start_session_button.dart';
-
 import '../../../../../../core/widget/custom_circular_progress_indicator.dart';
 
-class ListeningScreen extends StatelessWidget {
+class ListeningScreen extends StatefulWidget {
   final List<StudentModel> students;
   const ListeningScreen({super.key, required this.students});
+
+  @override
+  State<ListeningScreen> createState() => _ListeningScreenState();
+}
+
+class _ListeningScreenState extends State<ListeningScreen> {
+  @override
+  void initState() {
+    context.read<ListeningBloc>().add(FetchListeningData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +44,7 @@ class ListeningScreen extends StatelessWidget {
           return Column(
             children: [
               const ListeningInfoBanner(),
-              StartSessionButton(students: students),
+              // StartSessionButton(students: widget.students),
               Expanded(
                 child: RefreshIndicator(
                   onRefresh: () async {

@@ -44,10 +44,18 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['message']);
-      // return ServerFailure(response['error']['message']);
-    } else if (statusCode == 404) {
+    if (statusCode == 400) {
+      return ServerFailure('Bad Request');
+    } else if (statusCode == 401) {
+      return ServerFailure('Unauthorized');
+    } else if (statusCode == 403) {
+      return ServerFailure('Forbidden');
+    }
+    // if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+    //   return ServerFailure(response['message']);
+    //   return ServerFailure(response['error']['message']);
+    // }
+    else if (statusCode == 404) {
       return ServerFailure('Your Request Not Found, Please Try Later!');
     } else if (statusCode == 500) {
       return ServerFailure('Internal Server Error, Please Try Later!');

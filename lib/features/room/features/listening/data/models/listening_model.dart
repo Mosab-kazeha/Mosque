@@ -1,7 +1,7 @@
 import 'package:saas_mosque/features/campaigns/data/models/campaign_model.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
-import 'package:saas_mosque/features/room/features/listening/data/models/evaluation_model.dart';
-import 'package:saas_mosque/features/room/features/listening/data/models/mistake_model.dart';
+import 'package:saas_mosque/features/room/features/session/data/models/evaluation_model.dart';
+import 'package:saas_mosque/features/room/features/session/data/models/mistake_model.dart';
 import 'package:saas_mosque/features/room/features/listening/data/models/teacher_model.dart';
 
 class ListeningModel {
@@ -65,14 +65,20 @@ class ListeningModel {
                 if (e is Map && e.containsKey('mistake')) {
                   return MistakeModel(
                     id: e['id'] ?? 0,
-                    page: e['page'] ?? 0,
+                    pageNumber: e['page'] ?? 0,
                     title: (e['mistake']?['title'] ?? '').toString(),
+                    // campaignId: 1,
+                    // isRelated: false,
+                    // reducedMarks: 1,
                   );
                 } else {
                   return MistakeModel(
                     id: e['id'] ?? 0,
-                    page: e['page'] ?? 0,
-                    title: (e['title'] ?? '').toString(),
+                    pageNumber: e['page'] ?? 0,
+                    title: (e['mistake']?['title'] ?? '').toString(),
+                    // campaignId: 1,
+                    // isRelated: false,
+                    // reducedMarks: 1,
                   );
                 }
               })

@@ -56,8 +56,8 @@ class CustomNavigationBar extends StatelessWidget {
       );
     }
 
-    if (true) {
-      // if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
+    // if (true) {
+    if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
       items.add(
         const BottomNavigationBarItem(icon: Icon(Icons.book), label: 'التسميع'),
       );

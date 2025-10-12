@@ -16,4 +16,13 @@ abstract final class EndPoint {
 
   static const studentInfo = '/students/';
   static const myPermessions = '/auth/my-permissions';
+  static const evaluations = '/evaluations';
+  static const endSession = '/saving-sessions';
+  static String fetchMistakes(int campaignId) {
+    return '/mistakes/campaign/$campaignId';
+  }
+
+  static const fetchSurahs = '/session-surahs/surahs';
+  static const fetchSurahTemplates = '/session-surahs/templates/surah';
+  // static const fetchSurahsTemplates = 'https://api.alquran.cloud/v1/surah';
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
+import 'package:saas_mosque/core/style/font_style.dart';
+import 'package:saas_mosque/core/widget/responsive_text.dart';
 
 class EducationalClassText extends StatelessWidget {
   final int? classNumber;
@@ -38,9 +40,10 @@ class EducationalClassText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return ResponsiveText(
       getClassName(classNumber),
-      style: const TextStyle(color: AppPalette.backgroundColor),
+      color: AppPalette.backgroundColor,
+      fontSize: FontTextSize.defaultFontSize,
     );
   }
 }

@@ -10,6 +10,9 @@ import 'package:saas_mosque/features/room/features/attendance/data/repositories/
 import 'package:saas_mosque/features/room/features/attendance/data/repositories/attendance_repo_impl.dart';
 import 'package:saas_mosque/features/room/features/listening/data/repositories/listening_repo.dart';
 import 'package:saas_mosque/features/room/features/listening/data/repositories/listening_repo_impl.dart';
+import 'package:saas_mosque/features/room/features/session/data/repositories/session_repo.dart';
+import 'package:saas_mosque/features/room/features/session/data/repositories/session_repo_impl.dart';
+import 'package:saas_mosque/features/room/features/session/presentation/bloc/session_bloc.dart';
 import 'package:saas_mosque/features/splash/data/repositories/splash_repo.dart';
 import 'package:saas_mosque/features/splash/data/repositories/splash_repo_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -106,4 +109,16 @@ Future<void> init() async {
   // serviceLocater.registerLazySingleton<RoomBloc>(
   //   () => RoomBloc(serviceLocater()),
   // );
+
+  // serviceLocater.registerLazySingleton<ListeningBloc>(
+  //   () => ListeningBloc(serviceLocater()),
+  // );
+
+  serviceLocater.registerLazySingleton<SessionRepo>(() {
+    return SessionRepoImpl(serviceLocater());
+  });
+
+  serviceLocater.registerLazySingleton<SessionBloc>(
+    () => SessionBloc(serviceLocater()),
+  );
 }

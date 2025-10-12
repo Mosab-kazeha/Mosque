@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:saas_mosque/core/style/font_style.dart';
-import 'package:saas_mosque/core/utils/size_config.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 
 enum SnackBarType { error, success, other }
@@ -44,10 +43,16 @@ class CustomSnackBar extends StatelessWidget {
         SnackBar(
           backgroundColor: _backgroundColor(context, type).withAlpha(1),
           duration: _duration(type),
-          content: CustomSnackBar(
-            message: message,
-            messageStyle: messageStyle,
-            atTop: atTop,
+          content: Column(
+            mainAxisAlignment:
+                atTop ? MainAxisAlignment.start : MainAxisAlignment.end,
+            children: [
+              CustomSnackBar(
+                message: message,
+                messageStyle: messageStyle,
+                atTop: atTop,
+              ),
+            ],
           ),
           behavior: SnackBarBehavior.floating,
           dismissDirection: DismissDirection.horizontal,
@@ -63,11 +68,7 @@ class CustomSnackBar extends StatelessWidget {
             ),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          margin: EdgeInsets.only(
-            left: 10,
-            right: 10,
-            bottom: atTop ? SizeConfig.height - 100 : 10,
-          ),
+          margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
         ),
       );
   }

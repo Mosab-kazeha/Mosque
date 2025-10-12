@@ -5,8 +5,8 @@ import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/utils/permessions.dart';
 import 'package:saas_mosque/core/widget/responsive_text.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
+import 'package:saas_mosque/features/room/features/home/presentation/presentation/widget/student_class_level.dart';
 import '../../../../../../../core/style/font_style.dart';
-import '../../../../../../../core/utils/educational_text.dart';
 import '../../../../../data/model/student_model.dart';
 
 class StudentsList extends StatelessWidget {
@@ -44,25 +44,21 @@ class StudentsList extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffd8f4f0),
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  child: EducationalClassText(
-                    classNumber: student.educationalClass,
-                  ),
-                ),
-                Expanded(
-                  child: ResponsiveText(
-                    "${student.firstName} ${student.lastName}",
-                    textAlign: TextAlign.right,
-                    fontSize: FontTextSize.titleFontSize,
-                  ),
+                _StudentActions(student),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    ResponsiveText(
+                      "${student.firstName} ${student.lastName}",
+                      textAlign: TextAlign.right,
+                      fontSize: FontTextSize.subTitleFontSize,
+                    ),
+                    const VerticalSpace(8),
+                    StudentClassLevel(
+                      educationalClass: student.educationalClass,
+                    ),
+                  ],
                 ),
                 const HorizontalSpace(12),
                 const CircleAvatar(
@@ -77,6 +73,31 @@ class StudentsList extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _StudentActions extends StatelessWidget {
+  final StudentModel student;
+  const _StudentActions(this.student);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        InkWell(
+          onTap: () {
+            context.push(AppRoutes.kSurahsScreen, extra: student);
+          },
+          child: const Icon(Icons.play_arrow_outlined, size: 24),
+        ),
+        // const HorizontalSpace(8),
+        // InkWell(
+        //   borderRadius: BorderRadius.circular(100),
+        //   onTap: () {},
+        //   child: const Icon(Icons.add, size: 24),
+        // ),
+      ],
     );
   }
 }

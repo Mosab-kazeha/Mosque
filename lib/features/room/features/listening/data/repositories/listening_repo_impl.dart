@@ -51,31 +51,31 @@ class ListeningRepoImpl extends ListeningRepo {
     }
   }
 
-  @override
-  Future<Either<Failure, void>> startListeningSession({
-    required int studentId,
-    required int startPage,
-    required int endPage,
-  }) async {
-    try {
-      final response = await _dioHelper.postData(
-        url: EndPoint.startListeningSession,
-        data: {
-          'student_id': studentId,
-          'start_page': startPage,
-          'end_page': endPage,
-        },
-      );
+  // @override
+  // Future<Either<Failure, void>> startListeningSession({
+  //   required int studentId,
+  //   required int startPage,
+  //   required int endPage,
+  // }) async {
+  //   try {
+  //     final response = await _dioHelper.postData(
+  //       url: EndPoint.startListeningSession,
+  //       data: {
+  //         'student_id': studentId,
+  //         'start_page': startPage,
+  //         'end_page': endPage,
+  //       },
+  //     );
 
-      log("Start Listening Sessions Success: ${response.data}");
+  //     log("Start Listening Sessions Success: ${response.data}");
 
-      return right(null);
-    } catch (e) {
-      log("Start Listening Sessions Failure: ${e.toString()}");
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
-      }
-      return left(ServerFailure(e.toString()));
-    }
-  }
+  //     return right(null);
+  //   } catch (e) {
+  //     log("Start Listening Sessions Failure: ${e.toString()}");
+  //     if (e is DioException) {
+  //       return left(ServerFailure.fromDioException(e));
+  //     }
+  //     return left(ServerFailure(e.toString()));
+  //   }
+  // }
 }

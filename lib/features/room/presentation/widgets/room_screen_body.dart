@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/core/data/models/group_model.dart';
@@ -71,18 +70,26 @@ class RoomScreenBody extends StatelessWidget {
       );
     }
 
-    if (true) {
-      // if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
+    // if (true) {
+    if (permessions.contains(Permessions.SAVING_SESSION_MANAGEMENT)) {
       pages.add(
         BlocProvider(
           create:
-              (context) =>
-                  ListeningBloc(serviceLocater.get<ListeningRepo>())
-                    ..add(FetchListeningData()),
-          // value: serviceLocater.get<ListeningBloc>()..add(FetchListeningData()),
+              (context) => ListeningBloc(serviceLocater.get<ListeningRepo>()),
           child: ListeningScreen(students: group.students),
         ),
       );
+
+      // pages.add(
+      //   BlocProvider(
+      //     create:
+      //         (context) =>
+      //             ListeningBloc(serviceLocater.get<ListeningRepo>())
+      //               ..add(FetchListeningData()),
+      //     // value: serviceLocater.get<ListeningBloc>()..add(FetchListeningData()),
+      //     child: ListeningScreen(students: group.students),
+      //   ),
+      // );
     }
 
     return pages;

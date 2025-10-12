@@ -27,7 +27,6 @@ class ClassInfoCard extends StatelessWidget {
             fontSize: FontTextSize.bodyFontSize,
             fontWeight: FontWeight.bold,
           ),
-          // You can add more info here if needed
         ],
       ),
     );

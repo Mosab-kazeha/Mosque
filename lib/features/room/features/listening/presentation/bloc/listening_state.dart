@@ -15,6 +15,22 @@ final class ListeningSuccess extends ListeningState {
   const ListeningSuccess(this.listenings);
 }
 
+// final class EvaluationsSuccess extends ListeningState {
+//   final List<EvaluationModel> evaluations;
+
+//   const EvaluationsSuccess(this.evaluations);
+// }
+
+// final class EndSessionSuccess extends ListeningState {}
+
+// final class EndPageSuccess extends ListeningState {}
+
+// final class FetchMistakesSuccess extends ListeningState {
+//   final List<MistakeModel> mistakes;
+
+//   const FetchMistakesSuccess(this.mistakes);
+// }
+
 final class ListeningFailure extends ListeningState {
   final String message;
 
