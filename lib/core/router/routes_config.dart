@@ -9,4 +9,5 @@ abstract final class AppRoutes {
   static const String kStudentScreen = "/student";
   static const String kSurahsScreen = "/surahs";
   static const String kSurahPagesScreen = "/surahPages";
+  static const String kCurriculumScreen = "/curriculum";
 }

@@ -5,6 +5,9 @@ import 'package:saas_mosque/core/data/models/group_model.dart';
 import 'package:saas_mosque/core/utils/permessions.dart';
 import 'package:saas_mosque/core/widget/custom_circular_progress_indicator.dart';
 import 'package:saas_mosque/core/widget/custom_failur_screen.dart';
+import 'package:saas_mosque/features/curriculum/data/repositories/curriculum_repo.dart';
+import 'package:saas_mosque/features/curriculum/presentation/bloc/curriculum_bloc.dart';
+import 'package:saas_mosque/features/curriculum/presentation/screens/curriculum_templates_screen.dart';
 import 'package:saas_mosque/features/room/features/attendance/data/repositories/attendance_repo.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/bloc/attendance_bloc.dart';
 import 'package:saas_mosque/features/room/features/attendance/presentation/screens/attendance_screen.dart';
@@ -90,6 +93,17 @@ class RoomScreenBody extends StatelessWidget {
       //     child: ListeningScreen(students: group.students),
       //   ),
       // );
+    }
+
+    // Always show curriculum page for testing - change back to permission check later
+    if (permessions.contains(Permessions.CIRRUCULUM_MANAGEMENT)) {
+      pages.add(
+        BlocProvider(
+          create:
+              (context) => CurriculumBloc(serviceLocater.get<CurriculumRepo>()),
+          child: CurriculumTemplatesScreen(group: group),
+        ),
+      );
     }
 
     return pages;

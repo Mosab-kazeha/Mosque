@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:saas_mosque/features/auth/data/repositories/auth_repo.dart';
 import 'package:saas_mosque/features/auth/data/repositories/auth_repo_impl.dart';
+import 'package:saas_mosque/features/curriculum/data/repositories/curriculum_repo.dart';
+import 'package:saas_mosque/features/curriculum/data/repositories/curriculum_repo_impl.dart';
 import 'package:saas_mosque/features/groups/data/repositories/groups_repo.dart';
 import 'package:saas_mosque/features/groups/data/repositories/groups_repo_impl.dart';
 import 'package:saas_mosque/features/room/data/repositories/room_repo.dart';
@@ -65,6 +67,10 @@ Future<void> init() async {
   // serviceLocater.registerLazySingleton<CampaignsBloc>(
   //   () => CampaignsBloc(serviceLocater()),
   // );
+
+  serviceLocater.registerLazySingleton<CurriculumRepo>(() {
+    return CurriculumRepoImpl(serviceLocater());
+  });
 
   serviceLocater.registerLazySingleton<GroupsRepo>(() {
     return GroupsRepoImpl(serviceLocater());

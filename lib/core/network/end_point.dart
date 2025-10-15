@@ -25,4 +25,10 @@ abstract final class EndPoint {
   static const fetchSurahs = '/session-surahs/surahs';
   static const fetchSurahTemplates = '/session-surahs/templates/surah';
   // static const fetchSurahsTemplates = 'https://api.alquran.cloud/v1/surah';
+
+  static String getCurriculumTemplates(int groupId) {
+    return '/curriculum-template/group/$groupId';
+  }
+
+  static const createLessonSession = '/curriculum-lesson-session';
 }

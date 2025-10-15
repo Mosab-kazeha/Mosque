@@ -62,6 +62,17 @@ class CustomNavigationBar extends StatelessWidget {
         const BottomNavigationBarItem(icon: Icon(Icons.book), label: 'التسميع'),
       );
     }
+
+    // Always show curriculum tab for testing - change back to permission check later
+    if (permessions.contains(Permessions.CIRRUCULUM_MANAGEMENT)) {
+      items.add(
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.school),
+          label: 'الدروس',
+        ),
+      );
+    }
+
     return items;
   }
 }
