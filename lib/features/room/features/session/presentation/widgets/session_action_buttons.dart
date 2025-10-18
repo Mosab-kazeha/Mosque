@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
@@ -43,9 +44,25 @@ class SessionActionButtons extends StatelessWidget {
   void _onEndSession(BuildContext context) {
     final bloc = context.read<SessionBloc>();
 
-    final teacherId = int.parse(
-      serviceLocater.get<SharedPreferences>().getString('teacher-id')!,
+    final teacherIdString = serviceLocater.get<SharedPreferences>().getString(
+      'teacher-id',
     );
+    log(
+      'SessionActionButtons: Retrieved teacher-id from SharedPreferences: $teacherIdString',
+    );
+
+    if (teacherIdString == null) {
+      log(
+        'SessionActionButtons: CRITICAL ERROR - teacher-id is NULL! This will cause a crash!',
+      );
+      // Handle null case gracefully
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('خطأ: معرف المعلم غير موجود')),
+      );
+      return;
+    }
+
+    final teacherId = int.parse(teacherIdString);
     final campaignId =
         serviceLocater.get<SharedPreferences>().getInt('campaign-id')!;
 

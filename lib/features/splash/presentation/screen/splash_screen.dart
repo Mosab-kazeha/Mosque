@@ -18,9 +18,18 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () async {
+      print("SplashScreen: About to call getProfile()");
       (await widget.splashRepo.getProfile()).fold(
-        (l) => context.pushReplacement(AppRoutes.kLoginScreen),
-        (r) => context.pushReplacement(AppRoutes.kCampaignsScreen),
+        (l) {
+          print(
+            "SplashScreen: getProfile failed, navigating to login: ${l.errorMessege}",
+          );
+          context.pushReplacement(AppRoutes.kLoginScreen);
+        },
+        (r) {
+          print("SplashScreen: getProfile succeeded, navigating to campaigns");
+          context.pushReplacement(AppRoutes.kCampaignsScreen);
+        },
       );
     });
     super.initState();

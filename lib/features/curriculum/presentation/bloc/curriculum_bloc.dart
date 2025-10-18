@@ -69,8 +69,24 @@ class CurriculumBloc extends Bloc<CurriculumEvent, CurriculumState> {
         // Get required IDs from SharedPreferences and template
         final prefs = serviceLocater.get<SharedPreferences>();
         final groupId = prefs.getInt('group-id') ?? 0;
-        final teacherIdString = prefs.getString('teacher-id') ?? '0';
-        final teacherId = int.tryParse(teacherIdString) ?? 0;
+        final teacherIdString = serviceLocater
+            .get<SharedPreferences>()
+            .getString('teacher-id');
+        log(
+          'CurriculumBloc: Retrieved teacher-id from SharedPreferences: $teacherIdString',
+        );
+
+        final teacherId = int.tryParse(teacherIdString ?? '0') ?? 0;
+
+        if (teacherIdString == null) {
+          log(
+            'CurriculumBloc: WARNING - teacher-id is NULL in SharedPreferences!',
+          );
+        } else if (teacherId == 0) {
+          log(
+            'CurriculumBloc: WARNING - teacher-id could not be parsed or is 0: $teacherIdString',
+          );
+        }
         // Get campaign ID from template, fallback to SharedPreferences if needed
         final campaignId =
             currentState.template.campaignId != 0
@@ -79,7 +95,10 @@ class CurriculumBloc extends Bloc<CurriculumEvent, CurriculumState> {
 
         log('Creating lesson session with IDs:');
         log('Group ID: $groupId');
-        log('Teacher ID String: $teacherIdString');
+        log(
+          serviceLocater.get<SharedPreferences>().getString('teacher-id') ??
+              'hello',
+        );
         log('Teacher ID: $teacherId');
         log('Campaign ID: $campaignId');
 

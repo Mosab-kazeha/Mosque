@@ -22,9 +22,20 @@ class ListeningRepoImpl extends ListeningRepo {
         query: {
           "dateTo": "2025-12-31",
           "dateFrom": "2024-01-01",
-          "teacherId": serviceLocater.get<SharedPreferences>().get(
-            'teacher-id',
-          ),
+          "teacherId": () {
+            final teacherId = serviceLocater.get<SharedPreferences>().get(
+              'teacher-id',
+            );
+            log(
+              'ListeningRepoImpl: Retrieved teacher-id for API call: $teacherId',
+            );
+            if (teacherId == null) {
+              log(
+                'ListeningRepoImpl: WARNING - teacher-id is NULL when making API call!',
+              );
+            }
+            return teacherId;
+          }(),
           "campaignId": serviceLocater.get<SharedPreferences>().get(
             'campaign-id',
           ),

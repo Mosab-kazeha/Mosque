@@ -24,10 +24,21 @@ final class AuthRepoImpl extends AuthRepo {
         data: {'mobile_phone_number': phone, 'password': password},
       );
       log("Login Success: ${response.data}");
+      log("Login Response Full Data: ${response.data}");
+
+      // Check if teacher-id is in login response
+      if (response.data['id'] != null) {
+        log("Teacher ID found in login response: ${response.data['id']}");
+      } else {
+        log("Teacher ID NOT found in login response");
+      }
 
       final token = response.data['access_token'];
       if (token != null) {
         await serviceLocater.get<SharedPreferences>().setString('token', token);
+        log("Token saved successfully: $token");
+      } else {
+        log("Token is null in login response");
       }
       return right(null);
     } catch (e) {

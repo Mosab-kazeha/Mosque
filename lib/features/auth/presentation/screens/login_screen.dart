@@ -27,7 +27,10 @@ class LoginScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is AuthSuccess) {
                 CustomSnackBar.show(context, "تم تسجيل الدخول بنجاح");
-                context.pushReplacement(AppRoutes.kCampaignsScreen);
+                print(
+                  "LoginScreen: Login successful, navigating to splash to call getProfile()",
+                );
+                context.pushReplacement(AppRoutes.kSplashScreen);
               } else if (state is AuthFailure) {
                 CustomSnackBar.show(
                   context,

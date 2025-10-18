@@ -23,11 +23,21 @@ final class SplashRepoImpl extends SplashRepo {
           token: token,
         );
         log("Get Profile Success: ${response.data}");
+        log("Profile Response Full Data: ${response.data}");
+
+        final teacherId = response.data['id'];
+        log("Teacher ID from profile response: $teacherId");
 
         await serviceLocater.get<SharedPreferences>().setString(
           "teacher-id",
-          response.data['id'].toString(),
+          teacherId.toString(),
         );
+
+        // Verify teacher-id was saved
+        final savedTeacherId = serviceLocater
+            .get<SharedPreferences>()
+            .getString("teacher-id");
+        log("Teacher ID saved to SharedPreferences: $savedTeacherId");
 
         return right(null);
       }
