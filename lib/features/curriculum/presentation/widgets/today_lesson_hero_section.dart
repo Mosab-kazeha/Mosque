@@ -50,6 +50,7 @@ class TodayLessonHeroSection extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppPalette.white,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
       );
@@ -77,7 +78,7 @@ class TodayLessonHeroSection extends StatelessWidget {
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           const Text(
             'درس اليوم',
@@ -86,6 +87,7 @@ class TodayLessonHeroSection extends StatelessWidget {
               color: AppPalette.white,
               fontWeight: FontWeight.w500,
             ),
+            textAlign: TextAlign.right,
           ),
           const SizedBox(height: 12),
           Text(
@@ -95,6 +97,7 @@ class TodayLessonHeroSection extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppPalette.white,
             ),
+            textAlign: TextAlign.right,
           ),
           const SizedBox(height: 8),
           Text(
@@ -103,22 +106,24 @@ class TodayLessonHeroSection extends StatelessWidget {
               fontSize: 14,
               color: AppPalette.white.withOpacity(0.9),
             ),
+            textAlign: TextAlign.right,
           ),
           const SizedBox(height: 16),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(
-                Icons.access_time,
-                size: 16,
-                color: AppPalette.white.withOpacity(0.9),
-              ),
-              const SizedBox(width: 4),
               Text(
                 '${todayLesson!.estimatedDurationMinutes} دقيقة',
                 style: TextStyle(
                   fontSize: 12,
                   color: AppPalette.white.withOpacity(0.9),
                 ),
+              ),
+              const SizedBox(width: 4),
+              Icon(
+                Icons.access_time,
+                size: 16,
+                color: AppPalette.white.withOpacity(0.9),
               ),
             ],
           ),

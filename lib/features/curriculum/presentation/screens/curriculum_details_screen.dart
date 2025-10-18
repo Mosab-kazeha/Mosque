@@ -5,9 +5,10 @@ import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/widget/custom_app_bar.dart';
 import 'package:saas_mosque/core/widget/custom_circular_progress_indicator.dart';
 import 'package:saas_mosque/features/curriculum/presentation/bloc/curriculum_bloc.dart';
-import 'package:saas_mosque/features/curriculum/presentation/widgets/curriculum_node_card.dart';
+import 'package:saas_mosque/features/curriculum/presentation/widgets/curriculum_expansion_card.dart';
 import 'package:saas_mosque/features/curriculum/presentation/widgets/lesson_notes_bottom_sheet.dart';
 import 'package:saas_mosque/features/curriculum/presentation/widgets/today_lesson_hero_section.dart';
+import 'package:saas_mosque/features/curriculum/data/models/curriculum_node_model.dart';
 
 class CurriculumDetailsScreen extends StatelessWidget {
   const CurriculumDetailsScreen({super.key});
@@ -15,7 +16,7 @@ class CurriculumDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff3f6fb),
+      backgroundColor: const Color(0xFFFEFEFE),
       appBar: const CustomAppBar(title: 'المنهج'),
       body: BlocConsumer<CurriculumBloc, CurriculumState>(
         listener: (context, state) {
@@ -99,13 +100,9 @@ class CurriculumDetailsScreen extends StatelessWidget {
                               style: TextStyle(fontSize: 16),
                             ),
                           )
-                          : ListView.builder(
-                            padding: const EdgeInsets.only(bottom: 16),
-                            itemCount: template.nodes.length,
-                            itemBuilder: (context, index) {
-                              final node = template.nodes[index];
-                              return CurriculumNodeCard(node: node);
-                            },
+                          : _buildExpansionCards(
+                            template.nodes,
+                            startedNode?.id,
                           ),
                 ),
               ],
@@ -115,6 +112,33 @@ class CurriculumDetailsScreen extends StatelessWidget {
           return const SizedBox();
         },
       ),
+    );
+  }
+
+  Widget _buildExpansionCards(
+    List<CurriculumNodeModel> allNodes,
+    int? currentNodeId,
+  ) {
+    // Get only the root nodes (nodes with no parent)
+    final rootNodes =
+        allNodes.where((node) => node.parentId == null).toList()
+          ..sort((a, b) => a.orderIndex.compareTo(b.orderIndex));
+
+    return ListView.builder(
+      padding: const EdgeInsets.only(bottom: 16),
+      itemCount: rootNodes.length,
+      itemBuilder: (context, index) {
+        final node = rootNodes[index];
+        return CurriculumExpansionCard(
+          node: node,
+          allNodes: allNodes,
+          currentNodeId: currentNodeId,
+          onNodeTap: () {
+            // Handle node tap if needed
+            // You can add navigation or other actions here
+          },
+        );
+      },
     );
   }
 
