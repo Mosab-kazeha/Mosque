@@ -27,34 +27,36 @@ class _SurahsScreenState extends State<SurahsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(title: 'سور القرآن الكريم'),
-      body: BlocBuilder<SessionBloc, SessionState>(
-        builder: (context, state) {
-          if (state is SessionLoading) {
-            return const Center(child: CustomCircularProgressIndicator());
-          }
-          if (state is SessionFailure) {
-            return Center(
-              child: ResponsiveText(
-                state.message,
-                fontSize: FontTextSize.defaultFontSize,
-              ),
-            );
-          }
-          if (state is FetchSurahsSuccess) {
-            // final surahs = state.getSurahs();
+    return SafeArea(
+      child: Scaffold(
+        appBar: const CustomAppBar(title: 'سور القرآن الكريم'),
+        body: BlocBuilder<SessionBloc, SessionState>(
+          builder: (context, state) {
+            if (state is SessionLoading) {
+              return const Center(child: CustomCircularProgressIndicator());
+            }
+            if (state is SessionFailure) {
+              return Center(
+                child: ResponsiveText(
+                  state.message,
+                  fontSize: FontTextSize.defaultFontSize,
+                ),
+              );
+            }
+            if (state is FetchSurahsSuccess) {
+              // final surahs = state.getSurahs();
 
-            return ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              itemCount: state.surahs.length,
-              itemBuilder: (context, index) {
-                return SurahListItem(surah: state.surahs[index]);
-              },
-            );
-          }
-          return const SizedBox();
-        },
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                itemCount: state.surahs.length,
+                itemBuilder: (context, index) {
+                  return SurahListItem(surah: state.surahs[index]);
+                },
+              );
+            }
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }

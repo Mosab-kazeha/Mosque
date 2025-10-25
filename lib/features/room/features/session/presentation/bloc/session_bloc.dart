@@ -108,6 +108,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
       (r) {
         emit(EndSessionSuccess());
         sessionMistakes.clear();
+        selectedPages.clear();
       },
     );
   }
@@ -130,7 +131,9 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
             .id;
 
     if (sessionCurrentPage! < endPage) {
-      sessionCurrentPage = sessionCurrentPage! + 1;
+      // sessionCurrentPage = sessionCurrentPage! + 1;
+      sessionCurrentPage =
+          selectedPages[selectedPages.indexOf(currentTemplate) + 1].pageNumber;
       sessionSurahs.add(
         SessionSurahModel(
           template: currentTemplate,

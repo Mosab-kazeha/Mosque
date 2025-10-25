@@ -20,6 +20,8 @@ class _SurahPageGridItemState extends State<SurahPageGridItem> {
 
   @override
   Widget build(BuildContext context) {
+    // final bloc = context.read<SessionBloc>();
+
     return Card(
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
@@ -44,6 +46,11 @@ class _SurahPageGridItemState extends State<SurahPageGridItem> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         value: isSelected,
+                        // value: bloc.selectedPages.any(
+                        //   (element) =>
+                        //       element.pageNumber ==
+                        //       widget.surahTemplate.pageNumber,
+                        // ),
                         onChanged: (value) {
                           _onSelectPage(
                             context,
@@ -84,6 +91,9 @@ class _SurahPageGridItemState extends State<SurahPageGridItem> {
 
   void _onSelectPage(BuildContext context, {required int pageNumber}) {
     final bloc = context.read<SessionBloc>();
+    // bool isSelected = bloc.selectedPages.any(
+    //   (element) => element.pageNumber == widget.surahTemplate.pageNumber,
+    // );
 
     if (isSelected) {
       setState(() {

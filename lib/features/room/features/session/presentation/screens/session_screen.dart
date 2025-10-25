@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:saas_mosque/core/style/app_palette.dart';
 import 'package:saas_mosque/core/utils/size_config.dart';
 import 'package:saas_mosque/core/widget/custom_circular_progress_indicator.dart';
+import 'package:saas_mosque/core/widget/custom_snack_bar.dart';
 import 'package:saas_mosque/core/widget/spaces.dart';
 import 'package:saas_mosque/features/room/features/session/data/models/surah_template_model.dart';
 import 'package:saas_mosque/features/room/features/session/presentation/bloc/session_bloc.dart';
@@ -49,6 +50,7 @@ class _SessionScreenState extends State<SessionScreen> {
                 context
                   ..pop()
                   ..pop();
+                CustomSnackBar.show(context, "تم انهاء الجلسة بنجاح");
               }
             },
             builder: (context, state) {
@@ -64,13 +66,14 @@ class _SessionScreenState extends State<SessionScreen> {
               }
               return Column(
                 children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () => context.pop(),
-                    ),
-                  ),
+                  const VerticalSpace(48),
+                  // Align(
+                  //   alignment: Alignment.topRight,
+                  //   child: IconButton(
+                  //     icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  //     onPressed: () => context.pop(),
+                  //   ),
+                  // ),
                   const VerticalSpace(24),
                   const SessionTimer(),
                   const VerticalSpace(32),

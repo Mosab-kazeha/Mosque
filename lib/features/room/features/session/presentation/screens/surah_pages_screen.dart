@@ -63,7 +63,7 @@ class _SurahPagesScreenState extends State<SurahPagesScreen> {
               }
               if (state is FetchSurahTemplatesSuccess) {
                 if (state.surahTemplates.length == 1) {
-                  return const _OnePageSurah();
+                  return _OnePageSurah(state.surahTemplates.first);
                 }
                 return _MultiPagesSurah(state.surahTemplates);
               }
@@ -83,8 +83,21 @@ class _SurahPagesScreenState extends State<SurahPagesScreen> {
   }
 }
 
-class _OnePageSurah extends StatelessWidget {
-  const _OnePageSurah();
+class _OnePageSurah extends StatefulWidget {
+  final SurahTemplateModel surahTemlate;
+  const _OnePageSurah(this.surahTemlate);
+
+  @override
+  State<_OnePageSurah> createState() => _OnePageSurahState();
+}
+
+class _OnePageSurahState extends State<_OnePageSurah> {
+  @override
+  void initState() {
+    final bloc = context.read<SessionBloc>();
+    bloc.selectedPages.add(widget.surahTemlate);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

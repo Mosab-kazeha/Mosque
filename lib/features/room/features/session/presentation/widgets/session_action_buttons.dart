@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saas_mosque/features/room/data/model/student_model.dart';
@@ -15,6 +17,8 @@ class SessionActionButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<SessionBloc>();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -24,11 +28,16 @@ class SessionActionButtons extends StatelessWidget {
             _onEndSession(context);
           },
         ),
-        SessionButton(
-          text: 'إنهاء الصفحة',
-          onPressed: () {
-            _onEndPage(context);
-          },
+        Visibility(
+          visible:
+              bloc.selectedPages.length > 1 ||
+              bloc.sessionCurrentPage != bloc.selectedPages.last.pageNumber,
+          child: SessionButton(
+            text: 'إنهاء الصفحة',
+            onPressed: () {
+              _onEndPage(context);
+            },
+          ),
         ),
         SessionButton(
           text: 'إضافة خطأ',
@@ -63,6 +72,19 @@ class SessionActionButtons extends StatelessWidget {
           bloc.calculateSessionTotals()['max_possible_score']!.toInt(),
       sessionSurahs: bloc.sessionSurahs,
     );
+
+    log(teacherId.toString());
+    log(campaignId.toString());
+    log(student.id.toString());
+    log(bloc.evaluations.first.id.toString());
+    log(bloc.selectedPages.first.pageNumber.toString());
+    log(bloc.selectedPages.last.pageNumber.toString());
+    log(bloc.sessionDurationSeconds.toString());
+    log(bloc.calculateSessionTotals()['total_score']!.toInt().toString());
+    log(
+      bloc.calculateSessionTotals()['max_possible_score']!.toInt().toString(),
+    );
+    log(bloc.sessionSurahs.toString());
 
     bloc.add(EndSession(session));
   }
